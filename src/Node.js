@@ -14,3 +14,7 @@ function Node(i,j){
   this.j = j;
   this.walk = 0;
 }
+
+//start and end will be nodes
+// the nodes(2D array) will be passed in each algorithm
+//nodes is also updasted with every click
