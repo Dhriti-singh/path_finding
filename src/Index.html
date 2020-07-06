@@ -24,9 +24,26 @@
   <script type="text/javascript" src="Node.js"></script>
   <script type="text/javascript" src="Grid/board.js"></script>
   <script type="text/javascript" src="DFS.js"></script>
+  <script type="text/javascript" src="BFS.js"></script>
   <script type="text/javascript" src="Grid/drawStart.js"></script>
   <script type="text/javascript" src="Grid/drawEnd.js"></script> 
+  <script type="text/javascript" src="getValue.js"></script> 
   
+  <p>select a radio button and then click submit</p>
+
+  <div id="result">
+    <input type="radio" name="algorithm" value=1 id="dfs"> 
+    <label for = "dfs">DSF</label>
+    <input type="radio" name="algorithm" value=2 id="bfs"> 
+    <label for = "bfs"> BFS</label>
+    <input type="radio" name="algorithm" value=3 id="A*"> 
+    <label for="A*">A*</label>
+  </div>
+
+  <button type = "button" onclick = "displayRadioValue()">
+    Submit
+  </button>
  
+  
 </body>
 </html>
