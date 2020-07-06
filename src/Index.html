@@ -6,24 +6,27 @@
   <title>Maze</title>
 
     <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+    <script src="https://unpkg.com/konva@7.0.2/konva.min.js"></script>
    
     <link rel= "stylesheet" type= "text/css" href= "CSS/style.css" >
+    
 
 </head>
 <body>
   <h1>there is my sketch</h1>
+  <!-- adding the start box, and making it dragable -->
+  <div id="container"></div>
   <canvas id="canvas_trigger" width="500px" height="500px"></canvas>
   <p>can this be done?</p>
-  <!--  needed to add the javascript file after adding the canvas -->
 
-  <script type="text/javascript" src="./Node.js"></script>
-  <script type="text/javascript" src="sketch.js"></script>
-  <script type="text/javascript" src="singleCellDraw.js"></script>
-  <script type="text/javascript" src="move.js"></script>
-  <script type="text/javascript" src="DFS.js"></script>
-
+   <!-- //needed to add the javascript file after adding the canvas -->
+  <script type="text/javascript" src="Grid/singleCellDraw.js"></script>
+  <script type="text/javascript" src="Node.js"></script>
+  <script type="text/javascript" src="Grid/board.js"></script>
+  <!-- <script type="text/javascript" src="DFS.js"></script> -->
+  <script type="text/javascript" src="Grid/drawStart.js"></script>
+  <script type="text/javascript" src="Grid/drawEnd.js"></script> 
   
-  
-
+ 
 </body>
 </html>
