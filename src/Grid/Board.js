@@ -3,20 +3,13 @@ let cols = 10;
 
 //a 2D array to store which nodes can be passed through
 let board = [[]];
-let nodes = [[]];
 
-// block will be a square, of w side length
+//intializing the initialState and end node
+let initialState = new Node(0,0);
+let goalState = new Node(9,9);
 
-
-//intializing the start and end node
-let start = new Node(0,0);
-start.walk = 1;
-
-let end = new Node(9,9);
-end.walk = 1;
-
-let isDrawingStart = 0;
-let isDrawingEnd = 0;
+let isDrawingInitialState = 0;
+let isDrawingGoalState = 0;
 
 // triggers a function for each mouse click on the canvas
 canvas.addEventListener("mousedown", function(e){ 
@@ -28,34 +21,20 @@ canvas.addEventListener("mousedown", function(e){
 //redraws the canvas every 100ms. 
 //setInterval(updateCanvas, 100);
 
-//initalising the board
+//initialising the board
 for (let i = 0; i < rows; i++){
    board[i] = [];
-   nodes[i] =[];
    for (let j = 0; j < cols; j++){
      board[i][j] = 0;
-     nodes[i][j] = new Node(i,j);
    } 
 }
-
-
-console.log(nodes);
-// board[8][8]=1;
-// board[9][8]=1;
-// board[8][9]=1;
-// nodes[8][8].walk=1;
-// nodes[9][8].walk=1;
-// nodes[8][9].walk=1;
-// board[4][4]=1;
-// board[5][5]=1;
-// board[6][6]=1;
 
 //intial grid 
 function updateCanvas(){
    drawCells(rows,cols,board,canvas);
    drawGrid(rows,cols, canvas);
-   singleCellDraw(start.i,start.j,"green");
-   singleCellDraw(end.i,end.j,"red");
+   singleCellDraw(initialState.i,initialState.j,"green");
+   singleCellDraw(goalState.i,goalState.j,"red");
    drawGrid(rows,cols, canvas);
 }   
 
@@ -78,6 +57,7 @@ function drawCells(rows,cols,board,canvas){
          else{
             singleCellDraw(i,j,"white");
          }
+         
       }
 }
 
@@ -159,26 +139,24 @@ function setBlock(canvas, event, rows, cols, board) {
    console.log("click on row  " + cellRow);
    console.log("click on cell col " + cellCol);
 
-   //check if the click was on start
-   if(cellRow == start.i && cellCol == start.j){
-      isDrawingStart = 1;
-      drawStart(event,canvas);
+   //check if the click was on initialState
+   if(cellRow == initialState.i && cellCol == initialState.j){
+      isDrawingInitialState = 1;
+      drawInitialState(event,canvas);
    }
-   else if(cellRow == end.i && cellCol == end.j){
-      isDrawingEnd= 1;
-      drawEnd(event,canvas);
+   else if(cellRow == goalState.i && cellCol == goalState.j){
+      isDrawingGoalState= 1;
+      drawGoalState(event,canvas);
    }
-   //check if the click was on end
+   //check if the click was on goalState
 
    else if(board[cellRow][cellCol] == 0){
       board[cellRow][cellCol] = 1;
-      nodes[cellRow][cellCol].walk = 1;
       console.log("board 1 " + board[cellRow][cellCol]);
    }
 
    else if(board[cellRow][cellCol] == 1){
       board[cellRow][cellCol] = 0 ;
-      nodes[cellRow][cellCol].walk = 0;
       console.log("board 0 " + board[cellRow][cellCol]);
    }
 
@@ -188,7 +166,4 @@ function setBlock(canvas, event, rows, cols, board) {
 //  }
 //}
    updateCanvas();
-} 
-if(start.i == end.i && start.j==end.j){
-      alert("start and end are in the same node\n drag start from the end node to move to another node")
-   }
+}
