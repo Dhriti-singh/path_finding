@@ -15,7 +15,7 @@ function singleCellDraw(x,y,color){
    let y2 =  cellHeight;
    //Set the line and fill style options
    ctx.strokeStyle = "black";
-   ctx.lineWidth = 3;
+   ctx.lineWidth = 1;
    ctx.fillStyle = color;
    //Draw the rectangle
    ctx.beginPath();
@@ -23,4 +23,18 @@ function singleCellDraw(x,y,color){
    ctx.stroke();
    ctx.fill();
    drawGrid(rows,cols, canvas);
+}
+
+function drawArrayYellow(arr){
+   for(let i=0;i<arr.length;i++){
+      singleCellDraw(arr[i].i , arr[i].j, "yellow");
+   }
+   console.log("yellow");
+}
+
+
+function drawArrayBlue(arr){
+   for(let i=0;i<arr.length;i++){
+      singleCellDraw(arr[i].i,arr[i].j,"blue");
+   }
 }
