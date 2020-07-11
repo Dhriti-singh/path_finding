@@ -73,51 +73,36 @@ function call_DFS(){
 		}
 	}
 
-	function DFS(par){
+	dfsFinish = false;
+
+	while(frontier.length){
 		if(dfsFinish){
-			return;
+			break;
 		}
-		if(frontier.lenght==0){
-			console.log("no solution available");
-			return;
-		}
-
 		let front = frontier.pop();
-		console.log(front);
-		nodes[front.i][front.j].parentX = par.i;
-		nodes[front.i][front.j].parentY = par.j;
-
-		if(check( front) ){
-			dfsFinish = true;
-			console.log("DFS finished");
-			return;
-		}
-
-		front.closed = 1;
 		exploredNodes[front.i][front.j] = 1;
-		visitedNodes.push(new selectedNode(front.i, front.j));
+
+		if(check(front)){
+			console.log("dfs dfsFinish");
+			dfsFinish = 1;
+			break;
+		}
+		front.closed = 1;
+		visitedNodes.push(new selectedNode(front.i ,front.j));
 		let neighbours = Neighbours(front , nodes);
 
-		for(let i=0;i<neighbours.length;i++){
+		for(let i =0;i<neighbours.length;i++){
 			let neighbour = neighbours[i];
-			//console.log(neighbour);
 
-			if(neighbour.closed == 1 || exploredNodes[neighbour.i][neighbour.j]==1){
+			if(neighbours.closed==1 || exploredNodes[neighbour.i][neighbour.j]==1 ){
 				continue;
 			}
-			let beenVisited = neighbour.visit;
-			neighbour.visit = 1;
-
-			if(beenVisited== 0 ){
-				frontier.push(neighbour);
-				DFS(front);
-			}
-			else{
-				DFS(front);
-			}
+			neighbour.visit = true;
+			neighbour.parentX = front.i;
+			neighbour.parentY = front.j;
+			frontier.push(neighbour);
 		}
 	}
-	DFS(nodes[initialState.i][initialState.j]);
 
 	if(dfsFinish===false){
 		console.log("no solution available");
