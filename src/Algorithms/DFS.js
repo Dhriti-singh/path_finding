@@ -27,28 +27,36 @@
 
 //the frontier stores the nodes to be expanded;
 function call_DFS(){
+	console.log("THE ALGORITHM IS UNWEIGHTED, WEIGHTS ARE TREATED AS WALKABLE BLLOCKS");
 	let nodes = [[]];
-
+	updateCanvas();
 	for(let i=0;i<rows;i++){
 		nodes[i] =[];
 		for(let j=0;j<cols;j++){
 			nodes[i][j] = new Node(i,j);
-			if(board[i][j])
-				nodes[i][j].walk = 1;
+			nodes[i][j].walk = board[i][j];
 		}
 	}
 
 	let frontier = [];
 	frontier.push(initialState);
+	initialState.parentX = initialState.i;
+	initialState.parentY = initialState.j;
 
 	//implementing it using a stack
+
+	//to store the shortest path
 	let shortestPath = [];
+	//to keep a check if its visited ot not
 	let visitedNodes = [];
+
+	//all the visited nodes
 	let exploredNodes = [];
 
 	let dfsFinish = false;
 
 	function check( currentNode ){
+		//console.log("check run")
 	 	if(currentNode.i == goalState.i && currentNode.j == goalState.j)
 	 		return true;
 	 	else
@@ -65,7 +73,7 @@ function call_DFS(){
 		}
 	}
 
-	function DFS(){
+	function DFS(par){
 		if(dfsFinish){
 			return;
 		}
@@ -75,53 +83,41 @@ function call_DFS(){
 		}
 
 		let front = frontier.pop();
+		console.log(front);
+		nodes[front.i][front.j].parentX = par.i;
+		nodes[front.i][front.j].parentY = par.j;
+
 		if(check( front) ){
 			dfsFinish = true;
 			console.log("DFS finished");
 			return;
 		}
 
-		exploredNodes[front.i][front.j]=1;
+		front.closed = 1;
+		exploredNodes[front.i][front.j] = 1;
 		visitedNodes.push(new selectedNode(front.i, front.j));
+		let neighbours = Neighbours(front , nodes);
 
-		if(front.j>0){
-			if(exploredNodes[front.i][front.j-1]==0 && nodes[front.i][front.j-1].walk==0){
-				//console.log(1);
-				frontier.push(nodes[front.i][front.j-1]);
-				nodes[front.i][front.j-1].parentX = front.i;
-				nodes[front.i][front.j-1].parentY = front.j;
-				DFS();
+		for(let i=0;i<neighbours.length;i++){
+			let neighbour = neighbours[i];
+			//console.log(neighbour);
+
+			if(neighbour.closed == 1 || exploredNodes[neighbour.i][neighbour.j]==1){
+				continue;
 			}
-		}
-		if(front.i>0){
-			if(exploredNodes[front.i-1][front.j]==0 && nodes[front.i-1][front.j].walk==0){
-				//console.log(2);
-				frontier.push(nodes[front.i-1][front.j]);
-				nodes[front.i-1][front.j].parentX = front.i;
-				nodes[front.i-1][front.j].parentY = front.j;
-				DFS();
+			let beenVisited = neighbour.visit;
+			neighbour.visit = 1;
+
+			if(beenVisited== 0 ){
+				frontier.push(neighbour);
+				DFS(front);
 			}
-		}
-		if(front.i<rows-1){
-			if(exploredNodes[front.i+1][front.j]==0 && nodes[front.i+1][front.j].walk==0){
-				//console.log(3);
-				frontier.push(nodes[front.i+1][front.j]);
-				nodes[front.i+1][front.j].parentX = front.i;
-				nodes[front.i+1][front.j].parentY = front.j;
-				DFS();
-			}
-		}
-		if(front.j<cols-1){
-			if(exploredNodes[front.i][front.j+1]==0 && nodes[front.i][front.j+1].walk==0){
-				//console.log(4);
-				frontier.push(nodes[front.i][front.j+1]);
-				nodes[front.i][front.j+1].parentX = front.i;
-				nodes[front.i][front.j+1].parentY = front.j;
-				DFS();
+			else{
+				DFS(front);
 			}
 		}
 	}
-	DFS();
+	DFS(nodes[initialState.i][initialState.j]);
 
 	if(dfsFinish===false){
 		console.log("no solution available");
@@ -129,6 +125,7 @@ function call_DFS(){
 	else{
 		let currX = goalState.i;
 		let currY = goalState.j;
+		console.log(currX ,currY);
 		while(1){
 			if(currX==initialState.i && currY==initialState.j){
 				break;
@@ -136,15 +133,15 @@ function call_DFS(){
 			else{
 				let parent_x = nodes[currX][currY].parentX;
 				let parent_y = nodes[currX][currY].parentY;
-				//console.log(parent_x, parent_y);
+				console.log(nodes[currX][currY], parent_x, parent_y);
 				currX = parent_x
 				currY = parent_y;
 				let curr = new selectedNode(currX, currY);
 				shortestPath.push(curr);
 			}
 		}
-
 	}
+
 	drawArrayBlue(visitedNodes);
 	drawArrayYellow(shortestPath);
 	singleCellDraw(initialState.i, initialState.j,"green");
