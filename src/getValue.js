@@ -19,4 +19,157 @@ function displayRadioValue(){
 		console.log("IDDFS");
 		call_IDDFS();
 	}
+	if(document.getElementById("IDAstar").checked){
+		console.log("IDAstar");
+		call_IDAstar();
+	}
+}
+
+
+ function shuffle(array) {
+    // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+    
+ }
+  
+function randomWall(){
+	let w = 50 ;
+	a = [];
+	for(let i = 0 ; i < w ; i ++){
+		a.push(1);
+	}
+	for(let i=w;i<=rows*cols;i++)
+		a.push(0);
+	shuffle(a);
+	let count = 0 ;
+	for(let i = 0; i < rows; i++){
+		for(let j =0; j < cols; j++){
+			board[i][j] = a[count];
+			count = count + 1;
+		}
+	}
+	updateCanvas();
+}
+
+function randomWeight(){
+	let w = 50 ;
+	a = [];
+	for(let i = 0 ; i < w ; i ++){
+		a.push(10);
+	}
+	for(let i=w;i<=rows*cols;i++)
+		a.push(0);
+	shuffle(a);
+	let count = 0 ;
+	for(let i = 0; i < rows; i++){
+		for(let j =0; j < cols; j++){
+			weight[i][j] = a[count];
+			count = count + 1;
+		}
+	}
+	updateCanvas();
+}
+
+function recursiveWall(){
+	console.log("generating walls recursively");
+	for(let i=0;i<rows;i++){
+		for(let j=0;j<cols;j++){
+			board[i][j]=0;
+		}
+	}
+	for(let i=0;i<rows;i++){
+		board[i][0] = 1;
+		board[0][i] = 1;
+		board[rows-1][i] = 1;
+		board[i][cols-1] = 1;
+	}
+
+	function RecWall([x1 , y1] , [x2 , y2]){
+		let width =  x2-x1;
+		let height = y2-y1;
+		if(width>=height){
+			//vertical bisection 
+			if(x2-x1>3){
+				let bisection = Math.ceil((x1+x2)/2);
+				let max = y2-1;
+				let min = y1+1;
+				let randomPassage = Math.floor(Math.random()*(max-min+1)) + min;
+				let first = false;
+				let second = false;
+				if(board[y2][bisection]==0){
+					randomPassage = max;
+					first = true;
+				}
+				if(board[y1][bisection]==0){
+					randomPassage = min;
+					second = true;
+				}
+				for(let i=y1+1;i<y2;i++){
+					if(first && second){
+						if(i==max || i==min)
+							continue;
+					}
+					else if(i == randomPassage){
+						continue;
+					}
+					board[i][bisection] = 1;
+				}
+				RecWall([x1,y1],[bisection,y2]);
+				RecWall([bisection,y1],[x2,y2]);
+			}
+		}
+		else{
+			//horizontal bisection 
+			if(y2-y1>3){
+				let bisection = Math.ceil((y1+y2)/2);
+				let max = x2-1;
+				let min = x1+1;
+				let randomPassage = Math.floor(Math.random()*(max-min+1)) + min;
+				let first = false;
+				let second = false;
+				if(board[bisection][x2]==0){
+					randomPassage = max;
+					first = true;
+				}
+				if(board[bisection][x1] ==0){
+					randomPassage = min;
+					second = true;
+				}
+				for(let i=x1+1;i<x2;i++){
+					if(first && second){
+						if(i==max || i==min)
+							continue;
+					}
+					else if(i == randomPassage){
+						continue;
+					}
+					console.log(bisection);
+					board[bisection][i] = 1;
+				}
+				RecWall([x1,y1], [x2, bisection]);
+				RecWall([x1 ,bisection],[x2,y2]);
+			}
+		}
+	}
+	RecWall([0,0] , [rows-1, cols-1]);
+	initialState.i = 1;
+	initialState.j = 1;
+	goalState.i = rows-2;
+	goalState.j = cols-2;
+	updateCanvas();
 }
