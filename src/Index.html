@@ -17,7 +17,6 @@
   <!-- adding the start box, and making it dragable -->
   <div id="container"></div>
   <canvas id="canvas_trigger" width="500px" height="500px"></canvas>
-  <p>can this be done?</p>
 
    <!-- //needed to add the javascript file after adding the canvas -->
   <script type="text/javascript" src="Grid/DrawCells.js">           </script>
@@ -26,13 +25,14 @@
   <script type="text/javascript" src="Grid/drawStart.js">           </script>
   <script type="text/javascript" src="Grid/drawEnd.js">             </script> 
   <script type="text/javascript" src="Algorithms/DFS.js">           </script>
+  <script type="text/javascript" src="Algorithms/DFS2.js">          </script>
   <script type="text/javascript" src="Algorithms/BFS.js">           </script>
-  <script type="text/javascript" src="Algorithms/Astar.js">         </script> 
+  <script type="text/javascript" src="Algorithms/Astar.js">         </script>
   <script type="text/javascript" src="Algorithms/dijkstra.js">      </script>
   <script type="text/javascript" src="getValue.js">                 </script>
-  <script type="text/javascript" src="heapFunction.js">             </script> 
-  <script type="text/javascript" src="Algorithms/IDDFS.js">         </script> 
-
+  <script type="text/javascript" src="heapFunction.js">             </script>
+  <script type="text/javascript" src="Algorithms/IDDFS.js">         </script>
+  <script type="text/javascript" src="Algorithms/IDAstar.js">       </script>
   
 
   <p>select a radio button and then click submit</p>
@@ -54,12 +54,25 @@
     <label for="dijkstra">Dijkstra</label>
     <input type="radio" name="algorithm" value=5 id="IDDFS"> 
     <label for="IDDFS">IDDFS</label>
+    <input type="radio" name="algorithm" value=6 id="IDAstar"> 
+    <label for="IDDFS">IDAstar</label>
   </div>
 
   <button type = "button" onclick = "displayRadioValue()">
     Submit
   </button>
+
+  <button type = "button" onclick = "randomWall()">
+    Random Wall 
+  </button>
+
+  <button type = "button" onclick = "recursiveWall()">
+    Recursive Wall 
+  </button>
+
+  <button type = "button" onclick = "randomWeight()">
+    Random Weight
+  </button>
  
-  
 </body>
 </html>
