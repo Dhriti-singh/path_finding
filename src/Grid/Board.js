@@ -1,5 +1,5 @@
 let rows = 20;
-let cols = 20;
+let cols = 50;
 
 //a 2D array to store which nodes can be passed through
 let board = [[]];
@@ -189,8 +189,7 @@ function setWall(canvas, event, cellRow, cellCol) {
       singleCellDraw(cellRow, cellCol, "white");
    }
    weight[cellRow][cellCol] = 0;
-   drawGrid(rows, cols, canvas);
-   //updateCanvas();
+   updateCanvas();
 
    // let ctx = canvas.getContext('2d');
    // canvas.addEventListener("mousemove", mouseMove, false);
