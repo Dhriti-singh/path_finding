@@ -15,42 +15,63 @@
 <body>
   <h1>Path Finding Visualizer</h1>
 
-  <div class="dropdown_algorithm">
+  <span class="dropdown_algorithm">
     <button class="dropdown_button2">ALGORITHMS</button>
     <div class="dropdown_algorithm_content">
       <div id="dropdown_algorithms">
-        <input type="radio" name="algo" value="dfs">
+        <input type="radio" name="algo" value="dfs" id="dfs" >
         <label for="dfs">DFS</label>
-        <input type="radio" name="algo" value="bfs">
+        <input type="radio" name="algo" value="bfs"  id="bfs">
         <label for="dfs">BFS</label>
-        <input type="radio" name="algo" value="Astar">
+        <input type="radio" name="algo" value="dijkstra"  id="dijkstra">
+        <label for="dfs">Dijkstra</label>
+        <input type="radio" name="algo" value="Astar" id="Astar">
         <label for="dfs">Astar</label>
-        <input type="radio" name="algo" value="IDDFS">
+        <input type="radio" name="algo" value="IDDFS" id="IDDFS">
         <label for="dfs">IDDFS</label>
-        <input type="radio" name="algo" value="IDAstar">
+        <input type="radio" name="algo" value="IDAstar" id="IDAstar">
         <label for="dfs">IDAstar</label>
       </div>
     </div>
-  </div>
+  </span>
 
 
-  <div class="dropdown_maze">
+  <span class="dropdown_maze">
     <button class="dropdown_button">MAZE PATTERN</button>
     <div class="dropdown_maze_content">
-      <button type = "button" onclick = "randomWall()">
-        Random Wall 
-      </button>
-
       <button type = "button" onclick = "recursiveWall()">
         Recursive Wall 
       </button>
 
-      <button type = "button" onclick = "randomWeight()">
-        Random Weight
+      <button type = "button" onclick = "randomWallSparse()">
+        Random Wall Sparse
+      </button>
+
+       <button type = "button" onclick = "randomWallDense()">
+        Random Wall Dense
+      </button>
+
+      <button type = "button" onclick = "randomWeightSparse()">
+        Random Weight Sparse
+      </button>
+
+      <button type = "button" onclick = "randomWeightDense()">
+        Random Weight Dense
       </button>
     </div>
-  </div>
+  </span>
   
+  <span class="dropdown_block">
+    <button class="dropdown_button3">CREATE BLOCK</button>
+    <div class="dropdown_block_content">
+      <div id="dropdown_block">
+        <input type="radio"  name="block" value=1 id="wall"  >
+        <label for = "wall"  >Wall       </label>
+        <input type="radio"  name="block" value=2 id="weight">
+        <label for = "weight">Weight   </label>
+      </div>
+    </div>
+  </span>
 
 
   <div id = "block">
@@ -58,13 +79,9 @@
     <label for = "diagonal"  >Diagonal Movement       </label>
   </div>
 
-  <div id = "block">
-    <input type="radio"  name="block" value=1 id="wall"  >
-    <label for = "wall"  >Wall       </label>
-    <input type="radio"  name="block" value=2 id="weight">
-    <label for = "weight">Weight   </label>
-  </div> 
-
+  <button type = "button" onclick = "cleanBoard()">
+        Clean Board
+  </button>
   <button type = "button" onclick = "onStart()">
     Start
   </button>
