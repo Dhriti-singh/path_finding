@@ -94,9 +94,11 @@ function recursiveWall(){
 	}
 	for(let i=0;i<rows;i++){
 		board[i][0] = 1;
-		board[0][i] = 1;
-		board[rows-1][i] = 1;
 		board[i][cols-1] = 1;
+	}
+	for(let i=0;i<cols;i++){
+		board[rows-1][i] = 1;
+		board[0][i] = 1;
 	}
 
 	function RecWall([x1 , y1] , [x2 , y2]){
@@ -111,11 +113,11 @@ function recursiveWall(){
 				let randomPassage = Math.floor(Math.random()*(max-min+1)) + min;
 				let first = false;
 				let second = false;
-				if(board[y2][bisection]==0){
+				if(board[bisection][y2]==0){
 					randomPassage = max;
 					first = true;
 				}
-				if(board[y1][bisection]==0){
+				if(board[bisection][y1]==0){
 					randomPassage = min;
 					second = true;
 				}
@@ -127,7 +129,7 @@ function recursiveWall(){
 					else if(i == randomPassage){
 						continue;
 					}
-					board[i][bisection] = 1;
+					board[bisection][i] = 1;
 				}
 				RecWall([x1,y1],[bisection,y2]);
 				RecWall([bisection,y1],[x2,y2]);
@@ -142,11 +144,11 @@ function recursiveWall(){
 				let randomPassage = Math.floor(Math.random()*(max-min+1)) + min;
 				let first = false;
 				let second = false;
-				if(board[bisection][x2]==0){
+				if(board[x2][bisection]==0){
 					randomPassage = max;
 					first = true;
 				}
-				if(board[bisection][x1] ==0){
+				if(board[x1][bisection] ==0){
 					randomPassage = min;
 					second = true;
 				}
@@ -159,7 +161,7 @@ function recursiveWall(){
 						continue;
 					}
 					console.log(bisection);
-					board[bisection][i] = 1;
+					board[i][bisection] = 1;
 				}
 				RecWall([x1,y1], [x2, bisection]);
 				RecWall([x1 ,bisection],[x2,y2]);
@@ -173,3 +175,4 @@ function recursiveWall(){
 	goalState.j = cols-2;
 	updateCanvas();
 }
+
