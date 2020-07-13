@@ -13,27 +13,12 @@
 
 </head>
 <body>
-  <h1>there is my sketch</h1>
-  <!-- adding the start box, and making it dragable -->
-  <div id="container"></div>
-  <canvas id="canvas_trigger" width="500px" height="500px"></canvas>
-
-   <!-- //needed to add the javascript file after adding the canvas -->
-  <script type="text/javascript" src="Grid/DrawCells.js">           </script>
-  <script type="text/javascript" src="Node.js">                     </script>
-  <script type="text/javascript" src="Grid/board.js">               </script>
-  <script type="text/javascript" src="Grid/drawStart.js">           </script>
-  <script type="text/javascript" src="Grid/drawEnd.js">             </script> 
-  <script type="text/javascript" src="Algorithms/DFS.js">           </script>
-  <script type="text/javascript" src="Algorithms/DFS2.js">          </script>
-  <script type="text/javascript" src="Algorithms/BFS.js">           </script>
-  <script type="text/javascript" src="Algorithms/Astar.js">         </script>
-  <script type="text/javascript" src="Algorithms/dijkstra.js">      </script>
-  <script type="text/javascript" src="getValue.js">                 </script>
-  <script type="text/javascript" src="heapFunction.js">             </script>
-  <script type="text/javascript" src="Algorithms/IDDFS.js">         </script>
-  <script type="text/javascript" src="Algorithms/IDAstar.js">       </script>
+  <h1>Path Finding Visualizer</h1>
   
+  <div id = "block">
+    <input type="checkbox"  name="Diagonal Movement" value=1 id="diagonal"  >
+    <label for = "diagonal"  >Diagonal Movement       </label>
+  </div>
 
   <p>select a radio button and then click submit</p>
   <div id = "block">
@@ -43,7 +28,7 @@
     <label for = "weight">Weight   </label>
   </div>
 
-  <div id="result">
+ <!--  <div id="result">
     <input type="radio" name="algorithm" value=1 id="dfs"> 
     <label for = "dfs">DFS</label>
     <input type="radio" name="algorithm" value=2 id="bfs"> 
@@ -56,7 +41,7 @@
     <label for="IDDFS">IDDFS</label>
     <input type="radio" name="algorithm" value=6 id="IDAstar"> 
     <label for="IDDFS">IDAstar</label>
-  </div>
+  </div> -->
 
   <button type = "button" onclick = "displayRadioValue()">
     Submit
@@ -73,6 +58,43 @@
   <button type = "button" onclick = "randomWeight()">
     Random Weight
   </button>
+  <br>
+  <br>  
+
+  <select id="algorithms" , name="Algorithms">
+    <option value="dfs"> DFS </option>
+    <option value= "bfs">BFS</option>
+  </select>
+  <label for="algorithms">Algorithms</label>
+
+  
+
+  <br><br>
+  <!-- adding the start box, and making it dragable -->
+  <div id="container"></div>
+  <canvas id="canvas_trigger" width="1375px" height="500px"></canvas>
+
+   <!-- //needed to add the javascript file after adding the canvas -->
+
+  <script type="text/javascript" src="Grid/DrawCells.js">           </script>
+  <script type="text/javascript" src="Node.js">                     </script>
+  <script type="text/javascript" src="Grid/board.js">               </script>
+  <script type="text/javascript" src="Grid/drawStart.js">           </script>
+  <script type="text/javascript" src="Grid/drawEnd.js">             </script> 
+  <script type="text/javascript" src="Algorithms/DFS.js">           </script>
+  <script type="text/javascript" src="Algorithms/DFS2.js">          </script>
+  <script type="text/javascript" src="Algorithms/BFS.js">           </script>
+  <script type="text/javascript" src="Algorithms/Astar.js">         </script>
+  <script type="text/javascript" src="Algorithms/dijkstra.js">      </script>
+  <script type="text/javascript" src="getValue.js">                 </script>
+  <script type="text/javascript" src="heapFunction.js">             </script>
+  <script type="text/javascript" src="Algorithms/IDDFS.js">         </script>
+  <script type="text/javascript" src="Algorithms/IDAstar.js">       </script>
+
+  <footer>
+    <span>project hosted on</span>
+    <a href="https://github.com/Dhriti-singh/path_finding">GitHub</a>
+  </footer>
  
 </body>
 </html>
