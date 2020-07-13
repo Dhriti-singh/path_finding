@@ -1,2 +1,9 @@
 
 src/Algorithms/BestFirstFinder.js
+
+src/Algorithms/IDDFS.js
+
+//***trouble in finding the shortes path due to stack overflow.
+
+src/style/styke.css
+//***basic implementation till 13/7/20, needs upgrade
