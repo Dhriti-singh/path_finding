@@ -9,70 +9,73 @@
     <script src="https://unpkg.com/konva@7.0.2/konva.min.js"></script>
    
     <link rel= "stylesheet" type= "text/css" href= "CSS/style.css" >
-    
+    <script type="text/javascript" src="getValue.js">                 </script>
 
 </head>
 <body>
   <h1>Path Finding Visualizer</h1>
+
+  <div class="dropdown_algorithm">
+    <button class="dropdown_button2">ALGORITHMS</button>
+    <div class="dropdown_algorithm_content">
+      <div id="dropdown_algorithms">
+        <input type="radio" name="algo" value="dfs">
+        <label for="dfs">DFS</label>
+        <input type="radio" name="algo" value="bfs">
+        <label for="dfs">BFS</label>
+        <input type="radio" name="algo" value="Astar">
+        <label for="dfs">Astar</label>
+        <input type="radio" name="algo" value="IDDFS">
+        <label for="dfs">IDDFS</label>
+        <input type="radio" name="algo" value="IDAstar">
+        <label for="dfs">IDAstar</label>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="dropdown_maze">
+    <button class="dropdown_button">MAZE PATTERN</button>
+    <div class="dropdown_maze_content">
+      <button type = "button" onclick = "randomWall()">
+        Random Wall 
+      </button>
+
+      <button type = "button" onclick = "recursiveWall()">
+        Recursive Wall 
+      </button>
+
+      <button type = "button" onclick = "randomWeight()">
+        Random Weight
+      </button>
+    </div>
+  </div>
   
+
+
   <div id = "block">
     <input type="checkbox"  name="Diagonal Movement" value=1 id="diagonal"  >
     <label for = "diagonal"  >Diagonal Movement       </label>
   </div>
 
-  <p>select a radio button and then click submit</p>
   <div id = "block">
     <input type="radio"  name="block" value=1 id="wall"  >
     <label for = "wall"  >Wall       </label>
     <input type="radio"  name="block" value=2 id="weight">
     <label for = "weight">Weight   </label>
-  </div>
+  </div> 
 
- <!--  <div id="result">
-    <input type="radio" name="algorithm" value=1 id="dfs"> 
-    <label for = "dfs">DFS</label>
-    <input type="radio" name="algorithm" value=2 id="bfs"> 
-    <label for = "bfs"> BFS</label>
-    <input type="radio" name="algorithm" value=3 id="A*"> 
-    <label for="A*">A*</label>
-    <input type="radio" name="algorithm" value=4 id="dijkstra"> 
-    <label for="dijkstra">Dijkstra</label>
-    <input type="radio" name="algorithm" value=5 id="IDDFS"> 
-    <label for="IDDFS">IDDFS</label>
-    <input type="radio" name="algorithm" value=6 id="IDAstar"> 
-    <label for="IDDFS">IDAstar</label>
-  </div> -->
-
-  <button type = "button" onclick = "displayRadioValue()">
-    Submit
+  <button type = "button" onclick = "onStart()">
+    Start
   </button>
 
-  <button type = "button" onclick = "randomWall()">
-    Random Wall 
-  </button>
 
-  <button type = "button" onclick = "recursiveWall()">
-    Recursive Wall 
-  </button>
-
-  <button type = "button" onclick = "randomWeight()">
-    Random Weight
-  </button>
-  <br>
-  <br>  
-
-  <select id="algorithms" , name="Algorithms">
-    <option value="dfs"> DFS </option>
-    <option value= "bfs">BFS</option>
-  </select>
-  <label for="algorithms">Algorithms</label>
-
-  
+    
 
   <br><br>
   <!-- adding the start box, and making it dragable -->
   <div id="container"></div>
-  <canvas id="canvas_trigger" width="1375px" height="500px"></canvas>
+  <canvas id="canvas_trigger" width="1250px" height="500px"></canvas>
 
    <!-- //needed to add the javascript file after adding the canvas -->
 
@@ -86,7 +89,6 @@
   <script type="text/javascript" src="Algorithms/BFS.js">           </script>
   <script type="text/javascript" src="Algorithms/Astar.js">         </script>
   <script type="text/javascript" src="Algorithms/dijkstra.js">      </script>
-  <script type="text/javascript" src="getValue.js">                 </script>
   <script type="text/javascript" src="heapFunction.js">             </script>
   <script type="text/javascript" src="Algorithms/IDDFS.js">         </script>
   <script type="text/javascript" src="Algorithms/IDAstar.js">       </script>
