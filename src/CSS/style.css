@@ -5,8 +5,8 @@ body{
 canvas{
 	border : 2px solid black;
 }
-/*styling the algorithm dropdown */
-.dropdown_button2{
+/*styling the drop down button*/
+.dropdown_button{
 	background-color: #4CAF50;
 	color: white;
 	padding: 16px;
@@ -14,6 +14,8 @@ canvas{
 	border: none;
 	display: inline;
 }
+
+/*styling the algorithm dropdown */
 
 .dropdown_algorithm{
 	position: relative;
@@ -37,13 +39,14 @@ canvas{
 	min-width: auto;
 	display: inline;
 }
+
 .dropdown_algorithm_content label{
 	color: black;
 	padding: 0px 0px;
 	text-decoration: none;
 	display: block;
 	min-width: auto;
-	display: block;
+	display: inline;
 }
 
 
@@ -59,15 +62,6 @@ canvas{
 }
 
 /*styling the maze and pattern dropdown*/
-.dropdown_button{
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	display: inline;
-}
-
 .dropdown_maze{
 	position: relative;
 }
@@ -79,7 +73,7 @@ canvas{
 	min-width: 155px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	z-index: 1;
-	margin :0px 141px;
+	margin :0px 267px;
 }
 
 .dropdown_maze_content button{
@@ -102,15 +96,6 @@ canvas{
 }
 
 /*styling the blocks dropdown*/
-.dropdown_button3{
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	display: inline;
-}
-
 .dropdown_block{
 	position: relative;
 }
@@ -122,7 +107,7 @@ canvas{
 	min-width: 155px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	z-index: 1;
-	margin: 0px 298px;
+	margin: 0px 420px;
 }
 
 .dropdown_block_content input{
@@ -139,7 +124,7 @@ canvas{
 	text-decoration: none;
 	display: block;
 	min-width: auto;
-	display: block;
+	display: inline;
 }
 
 
@@ -151,5 +136,49 @@ canvas{
 }
 
 .dropdown_block:hover .dropdown_button3{
+	background-color: #3e8e41;
+}
+
+/*styling the heuristic block*/
+.dropdown_heuristic{
+	position: relative;
+}
+
+.dropdown_heuristic_content{
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 155px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+	margin: 0px 142px;
+}
+
+.dropdown_heuristic_content input{
+	color: black;
+	padding: 0px 0px;
+	text-decoration: none;
+	display: block;
+	min-width: auto;
+	display: inline;
+}
+.dropdown_heuristic_content label{
+	color: black;
+	padding: 0px 0px;
+	text-decoration: none;
+	display: block;
+	min-width: auto;
+	display: inline;
+}
+
+
+.dropdown_heuristic:hover .dropdown_heuristic_content{
+	display: block;
+}
+.dropdown_heuristic_content button: hover{
+	background-color: #ddd;
+}
+
+.dropdown_heuristic:hover .dropdown_button4{
 	background-color: #3e8e41;
 }
