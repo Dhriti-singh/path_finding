@@ -1,4 +1,6 @@
-function displayRadioValue(){
+function onStart(){
+
+	//radio button reading
 	if(document.getElementById("dfs").checked){
 		console.log("DFS ");
 		call_DFS();
@@ -7,7 +9,7 @@ function displayRadioValue(){
 		console.log("BFS ");
 		call_BFS();
 	}
-	if(document.getElementById("A*").checked){
+	if(document.getElementById("Astar").checked){
 		console.log("a star");
 		call_Astar();
 	}
@@ -47,8 +49,8 @@ function displayRadioValue(){
     
  }
   
-function randomWall(){
-	let w = 50 ;
+function randomWallSparse(){
+	let w = 100;
 	a = [];
 	for(let i = 0 ; i < w ; i ++){
 		a.push(1);
@@ -66,8 +68,45 @@ function randomWall(){
 	updateCanvas();
 }
 
-function randomWeight(){
-	let w = 50 ;
+function randomWallDense(){
+	let w = 250;
+	a = [];
+	for(let i = 0 ; i < w ; i ++){
+		a.push(1);
+	}
+	for(let i=w;i<=rows*cols;i++)
+		a.push(0);
+	shuffle(a);
+	let count = 0 ;
+	for(let i = 0; i < rows; i++){
+		for(let j =0; j < cols; j++){
+			board[i][j] = a[count];
+			count = count + 1;
+		}
+	}
+	updateCanvas();
+}
+
+function randomWeightSparse(){
+	let w = 100 ;
+	a = [];
+	for(let i = 0 ; i < w ; i ++){
+		a.push(10);
+	}
+	for(let i=w;i<=rows*cols;i++)
+		a.push(0);
+	shuffle(a);
+	let count = 0 ;
+	for(let i = 0; i < rows; i++){
+		for(let j =0; j < cols; j++){
+			weight[i][j] = a[count];
+			count = count + 1;
+		}
+	}
+	updateCanvas();
+}
+function randomWeightDense(){
+	let w = 250 ;
 	a = [];
 	for(let i = 0 ; i < w ; i ++){
 		a.push(10);
@@ -176,3 +215,16 @@ function recursiveWall(){
 	updateCanvas();
 }
 
+function cleanBoard(){
+	for(let i=0;i<rows;i++){
+		for(let j=0;j<cols;j++){
+			board[i][j]=0;
+			weight[i][j]=0;
+		}
+	}
+	updateCanvas();
+}
+
+function cleanResult(){
+	updateCanvas();
+}
