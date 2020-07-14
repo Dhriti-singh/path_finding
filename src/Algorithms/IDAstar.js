@@ -35,7 +35,7 @@ function call_IDAstar(){
 		nodes[i] = [];
 		for(let j=0; j<cols ; j++){
 			nodes[i][j] = new Node(i,j);
-			nodes[i][j].h = manhattan(nodes[i][j] , end);		
+			nodes[i][j].h = heuristic(nodes[i][j] , end);		
 		}
 	}
 	function heap() {
@@ -43,13 +43,7 @@ function call_IDAstar(){
             return node.f;
         });
     }
-	// need to add all the heuristics
-
-	function manhattan(A,B){
-		let d1 = Math.abs(A.i - B.i);
-		let d2 = Math.abs(A.j - B.j);
-		return d1+d2;
-	}
+	
 	function check(currNode){
 		if(currNode.i == goalState.i && currNode.j== goalState.j){
 			return true;
@@ -62,7 +56,7 @@ function call_IDAstar(){
 	let IDAstarFinish = false;
 
 	function IDAstar(){
-		let threshold = manhattan(start,end);
+		let threshold = heuristic(start,end);
 		while(true){
 			if(IDAstarFinish){
 				break;

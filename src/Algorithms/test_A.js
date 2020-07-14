@@ -36,11 +36,10 @@ function call_Astar(){
 	function Node(i,j){
 		this.i =i;
 		this.j = j;
-		this.f = 0;
-		this.g = 0;
-		this.h = 0;
-		//Math.abs(i - goalState.i) + Math.abs(j - goalState.j);
-		this.cost = Math.max(1,weight[i][j]);
+		this.f = 100000000000;
+		this.g = 100000000000;
+		this.h = Math.abs(i - goalState.i) + Math.abs(j - goalState.j);
+		this.cost = weight[i][j];
 		this.visited = false;
 		this.closed = false;
 		this.parentX = i;
@@ -51,16 +50,13 @@ function call_Astar(){
 	let start = new Node(initialState.i, initialState.j);
 	let end = new Node(goalState.i , goalState.j);
 
-	let exploredNodes = [[]];
-
 	for(let i=0 ; i<rows; i++){
 		nodes[i] = [];
-		exploredNodes[i] = [];
 		for(let j=0; j<cols ; j++){
 			nodes[i][j] = new Node(i,j);
-			exploredNodes[i][j] = 0;
 		}
 	}
+
 
 	function heap() {
         return new BinaryHeap(function(node) {
@@ -68,58 +64,79 @@ function call_Astar(){
         });
     }
 	// need to add all the heuristics
+	function manhattan(A,B){
+		let d1 = Math.abs(A.i - B.i);
+		let d2 = Math.abs(A.j - B.j);
+		return (d1+d2);
+	}
+	function Neighbours(currNode){
+		let i = currNode.i;
+		let j = currNode.j;
+		let temp = [];
 
-	function check(currNode){
-		if(currNode.i == goalState.i && currNode.j== goalState.j){
+		if(j>0 && nodes[i][j-1].walk==0){
+			temp.push(nodes[i][j-1]);
+		}
+		if(i>0 && nodes[i-1][j].walk==0){
+			temp.push(nodes[i-1][j]);
+		}
+		if(i<rows-1 && nodes[i+1][j].walk==0){
+			temp.push(nodes[i+1][j]);
+		}
+		if(j<cols-1 && nodes[i][j+1].walk==0){
+			temp.push(nodes[i][j+1]);
+		}
+
+		return temp;
+	}
+
+	function check(A){
+		if(A.i == goalState.i && A.j== goalState.j){
 			return true;
 		}
 		else{
 			return false;
 		}
 	}
-
 	let AstarFinish = false;
 
 	function Astar(){
 		let frontier = heap();
 		frontier.push(start);
 
-		start.h = heuristic(start,end);
+		start.h = manhattan(start,end);
 		start.g = 0;
-		start.f = start.h + start.g;
+		start.f = start.h;
 
 		while(frontier.size()>0){
 			//poping the lowest f(x) value node;
 			let currNode = frontier.pop();
-			console.log(currNode);
+
 			if(check(currNode)){
 				AstarFinish = true;
 				return;
 			}
 
 			currNode.closed = true;
-			exploredNodes[currNode.i][currNode.j] = 1;
 			let neighbours = Neighbours(currNode, nodes);
-			console.log(neighbours);
+			//console.log(neighbours);
 
 			for(let i=0;i<neighbours.length;i++){
 				let neighbour = neighbours[i];
 				visitedNodes.push(neighbour);
-				if(neighbour.walk==1 || neighbour.closed==true || exploredNodes[neighbour.i][neighbour.j]==1){
+				if(neighbour.walk==1 || neighbour.closed==true){
 					continue;
 				}
 
 				let Gtemp = currNode.g + neighbour.cost;
 				let beenVisited = neighbour.visited;
-
 				if(beenVisited==false || Gtemp < neighbour.g){
 					neighbour.g = Gtemp;
-					neighbour.h = neighbour.h ||  heuristic(neighbour,end);
+					neighbour.h = neighbour.h ||  manhattan(neighbour,end);
 					neighbour.f = neighbour.g + neighbour.h;
-					neighbour.visited = 1;
 					neighbour.parentY = currNode.j;
 					neighbour.parentX = currNode.i;
-
+					neighbour.visit = 1;
 					if(beenVisited==0){
 						frontier.push(neighbour);
 					}
@@ -130,7 +147,6 @@ function call_Astar(){
 			}
 		}
 	}
-
 	let visitedNodes = [];
 	Astar();
 	let shortestPath = [];
