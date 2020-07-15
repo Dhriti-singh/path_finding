@@ -104,11 +104,10 @@ function call_Astar(){
 
 			for(let i=0;i<neighbours.length;i++){
 				let neighbour = neighbours[i];
-				visitedNodes.push(neighbour);
 				if(neighbour.walk==1 || neighbour.closed==true || exploredNodes[neighbour.i][neighbour.j]==1){
 					continue;
 				}
-
+				visitedNodes.push(neighbour);
 				let Gtemp = currNode.g + neighbour.cost;
 				let beenVisited = neighbour.visited;
 
