@@ -37,7 +37,7 @@ canvas.addEventListener("mousedown", function(e){
       drawGoalState(event,canvas);
    }
    //check if the click was on goalState
-   if(document.getElementById("weight").checked){
+   if(document.getElementById("weight-10").checked || document.getElementById("weight-20").checked || document.getElementById("weight-50").checked){
       setWeight(canvas, e, cellRow, cellCol, board);
    }
    else{
@@ -82,11 +82,17 @@ function drawCells(rows,cols,board,canvas){
          if(board[i][j] == 1){
             singleCellDraw(i,j,"grey");
          }
+         else if(weight[i][j]== 10){
+            singleCellDraw(i,j,"#e6b3cc");
+         }
+         else if(weight[i][j]==20){
+            singleCellDraw(i,j,"#c6538a");
+         }
+         else if(weight[i][j]==50){
+            singleCellDraw(i,j,"#862d58");
+         }
          else{
             singleCellDraw(i,j,"white");
-         }
-         if(weight[i][j]== 10){
-            singleCellDraw(i,j,"pink");
          }
       }
    }
@@ -156,16 +162,23 @@ function getCellAt(rows, cols, px, py, canvas) {
 
 }
 
-function setWeight(canvas, event, cellRow, cellCol, board) { 
+function setWeight(canvas, event, cellRow, cellCol, board){ 
    if(weight[cellRow][cellCol] == 0){
-      weight[cellRow][cellCol] = 10;
-      console.log("board weight set " + weight[cellRow][cellCol]);
-      singleCellDraw(cellRow,cellCol,"pink");
+      if(document.getElementById("weight-10").checked){
+         weight[cellRow][cellCol] = 10;
+         singleCellDraw(cellRow,cellCol,"#e6b3cc");
+      }
+      if(document.getElementById("weight-20").checked){
+         weight[cellRow][cellCol] = 20;
+         singleCellDraw(cellRow,cellCol,"#c6538a");
+      }
+      if(document.getElementById("weight-50").checked){
+         weight[cellRow][cellCol] = 50;
+         singleCellDraw(cellRow,cellCol,"#862d58");
+      }
    }
-
-   else if(weight[cellRow][cellCol] == 10){
+   else{
       weight[cellRow][cellCol] = 0 ;
-      console.log("board weight removed " + weight[cellRow][cellCol]);
       singleCellDraw(cellRow,cellCol,"white");
    }
    board[cellRow][cellCol] = 0;

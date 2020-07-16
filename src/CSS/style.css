@@ -3,6 +3,7 @@ body{
 	padding : 0px;
 }
 canvas{
+	margin-left : 2px;
 	border : 2px solid black;
 }
 h1 {
@@ -242,11 +243,12 @@ h1 {
 
 footer{
 	text-align : center;
-	border: 2px black solid;
+/* 	border: 2px black solid; */
     width : 250px;
     border-radius: 30px;
     front-family : monospace;
     margin-left : 500px;
-    background-color : #E18A81;
-    color : white;
+    background-color : #b4a9a896;
+    color : black;
+    font-size: 15px;
 }

@@ -92,10 +92,17 @@ function randomWallDense(){
 }
 
 function randomWeightSparse(){
-	let w = 100 ;
+	let w = 90 ;
 	a = [];
-	for(let i = 0 ; i < w ; i ++){
+	console.log("here");
+	for(let i = 0 ; i < 30 ; i ++){
 		a.push(10);
+	}
+	for(let i=0;i<30;i++){
+		a.push(20);
+	}
+	for(let i=0;i<30;i++){
+		a.push(50);
 	}
 	for(let i=w;i<=rows*cols;i++)
 		a.push(0);
@@ -107,13 +114,21 @@ function randomWeightSparse(){
 			count = count + 1;
 		}
 	}
+	console.log(weight);
 	updateCanvas();
 }
+
 function randomWeightDense(){
-	let w = 250 ;
+	let w = 240 ;
 	a = [];
-	for(let i = 0 ; i < w ; i ++){
+	for(let i = 0 ; i < 60 ; i ++){
 		a.push(10);
+	}
+	for(let i = 0 ; i < 60 ; i ++){
+		a.push(20);
+	}
+	for(let i = 0 ; i < 60 ; i ++){
+		a.push(50);
 	}
 	for(let i=w;i<=rows*cols;i++)
 		a.push(0);
