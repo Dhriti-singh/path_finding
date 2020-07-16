@@ -13,107 +13,116 @@
 
 </head>
 <body>
-  <h1>Path Finding Visualizer</h1>
+  <h1>PATH FINDING VISUALIZER</h1>
 
-  <span class="dropdown_algorithm">
-    <button class="dropdown_button">ALGORITHMS</button>
-    <div class="dropdown_algorithm_content">
-      <div id="dropdown_algorithms">
-        <input type="radio" name="algo" value="dfs" id="dfs" >
-        <label for="dfs">DFS</label>
-        <br>
-        <input type="radio" name="algo" value="bfs"  id="bfs">
-        <label for="bfs">BFS</label>
-        <br>
-        <input type="radio" name="algo" value="dijkstra"  id="dijkstra">
-        <label for="dijkstra">Dijkstra</label>
-        <br>
-        <input type="radio" name="algo" value="Astar" id="Astar">
-        <label for="Astar">Astar</label>
-        <br>
-        <input type="radio" name="algo" value="IDDFS" id="IDDFS">
-        <label for="IDDFS">IDDFS</label>
-        <br>
-        <input type="radio" name="algo" value="IDAstar" id="IDAstar">
-        <label for="IDAstar">IDAstar</label>
+  <div id="nav-bar">
+    <span class="dropdown_algorithm">
+      <button class="dropdown_button">ALGORITHMS</button>
+      <div class="dropdown_algorithm_content">
+        <div id="dropdown_algorithms">
+          <input type="radio" name="algo" value="dfs" id="dfs" >
+          <label for="dfs">DFS</label>
+          <br>
+          <input type="radio" name="algo" value="bfs"  id="bfs">
+          <label for="bfs">BFS</label>
+          <br>
+          <input type="radio" name="algo" value="bestfs"  id="bestfs">
+          <label for="bestfs">Best First Finder</label>
+          <br>
+          <input type="radio" name="algo" value="dijkstra"  id="dijkstra">
+          <label for="dijkstra">Dijkstra</label>
+          <br>
+          <input type="radio" name="algo" value="Astar" id="Astar">
+          <label for="Astar">Astar</label>
+          <br>
+          <input type="radio" name="algo" value="IDDFS" id="IDDFS">
+          <label for="IDDFS">IDDFS</label>
+          <br>
+          <input type="radio" name="algo" value="IDAstar" id="IDAstar">
+          <label for="IDAstar">IDAstar</label>
+        </div>
       </div>
-    </div>
-  </span>
+    </span>
 
-  <span class="dropdown_heuristic">
-    <button class="dropdown_button">HEURISTIC</button>
-    <div class="dropdown_heuristic_content">
-      <div id="dropdown_heuristic">
-        <input type="radio" name="heuristic" id="manhattan" >
-        <label for="manhattan">Manhattan</label>
-        <br>
-        <input type="radio" name="heuristic"  id="euclidean">
-        <label for="euclidean">Euclidean</label>
-        <br>
-        <input type="radio" name="heuristic"  id="chebyshev">
-        <label for="chebyshev">Chebyshev</label>
-        <br>
-        <input type="radio" name="heuristic" id="octile">
-        <label for="octile">Octile</label>
+    <span class="dropdown_heuristic">
+      <button class="dropdown_button">HEURISTIC</button>
+      <div class="dropdown_heuristic_content">
+        <div id="dropdown_heuristic">
+          <input type="radio" name="heuristic" id="manhattan" >
+          <label for="manhattan">Manhattan</label>
+          <br>
+          <input type="radio" name="heuristic"  id="euclidean">
+          <label for="euclidean">Euclidean</label>
+          <br>
+          <input type="radio" name="heuristic"  id="chebyshev">
+          <label for="chebyshev">Chebyshev</label>
+          <br>
+          <input type="radio" name="heuristic" id="octile">
+          <label for="octile">Octile</label>
+        </div>
       </div>
-    </div>
-  </span>
+    </span>
 
-  <span class="dropdown_maze">
-    <button class="dropdown_button">MAZE PATTERN</button>
-    <div class="dropdown_maze_content">
-      <button type = "button" onclick = "recursiveWall()">
-        Recursive Wall 
-      </button>
+    <span class="dropdown_maze">
+      <button class="dropdown_button">MAZE PATTERN</button>
+      <div class="dropdown_maze_content">
+        <button type = "button" onclick = "recursiveWall()">
+          Recursive Wall 
+        </button>
 
-      <button type = "button" onclick = "randomWallSparse()">
-        Random Wall Sparse
-      </button>
+        <button type = "button" onclick = "randomWallSparse()">
+          Random Wall Sparse
+        </button>
 
-       <button type = "button" onclick = "randomWallDense()">
-        Random Wall Dense
-      </button>
+         <button type = "button" onclick = "randomWallDense()">
+          Random Wall Dense
+        </button>
 
-      <button type = "button" onclick = "randomWeightSparse()">
-        Random Weight Sparse
-      </button>
+        <button type = "button" onclick = "randomWeightSparse()">
+          Random Weight Sparse
+        </button>
 
-      <button type = "button" onclick = "randomWeightDense()">
-        Random Weight Dense
-      </button>
-    </div>
-  </span>
-  
-  <span class="dropdown_block">
-    <button class="dropdown_button">CREATE BLOCK</button>
-    <div class="dropdown_block_content">
-      <div id="dropdown_block">
-        <input type="radio"  name="block" value=1 id="wall"  >
-        <label for = "wall"  >Wall       </label>
-        <br>
-        <input type="radio"  name="block" value=2 id="weight">
-        <label for = "weight">Weight   </label>
+        <button type = "button" onclick = "randomWeightDense()">
+          Random Weight Dense
+        </button>
       </div>
-    </div>
-  </span>
+    </span>
+    
+    <span class="dropdown_block">
+      <button class="dropdown_button">CREATE BLOCK</button>
+      <div class="dropdown_block_content">
+        <div id="dropdown_block">
+          <input type="radio"  name="block" value=1 id="wall"  >
+          <label for = "wall"  >Wall       </label>
+          <br>
+          <input type="radio"  name="block" value=2 id="weight">
+          <label for = "weight">Weight   </label>
+        </div>
+      </div>
+    </span>
+</div>
 
-  <br><br>
-  <span id = "block">
-    <input type="checkbox"  name="Diagonal Movement" value=1 id="diagonal"  >
-    <label for = "diagonal"  >Diagonal Movement       </label>
-  </span>
+  <div id = "nav-bar2">
+    <br><br>
+    <button type = "button" onclick = "onStart()" id="startButton">
+      START
+    </button>
 
-  <button type = "button" onclick = "cleanBoard()">
-        Clean Board
-  </button>
+    <span id = "diagonal">
+      <input type="checkbox"  name="Diagonal Movement" value=1 >
+      <label for = "diagonal"  >DIAGONAL MOVEMENT</label id = "dia_label">
+    </span>
 
-  <button type = "button" onclick = "cleanResult()">
-        Clean Search Results
-  </button>
+    <button type = "button" onclick = "cleanBoard()" id="clean">
+          CLEAN BOARD
+    </button>
 
-  <button type = "button" onclick = "onStart()">
-    Start
-  </button>
+    <button type = "button" onclick = "cleanResult()" id = "clean">
+          CLEAN PATH
+    </button>
+
+    
+  </div>
 
 
     
@@ -131,7 +140,7 @@
   <script type="text/javascript" src="Grid/drawStart.js">           </script>
   <script type="text/javascript" src="Grid/drawEnd.js">             </script> 
   <script type="text/javascript" src="Algorithms/DFS.js">           </script>
-  <script type="text/javascript" src="Algorithms/DFS2.js">          </script>
+  <script type="text/javascript" src="Algorithms/BestFirstFinder.js">          </script>
   <script type="text/javascript" src="Algorithms/BFS.js">           </script>
   <script type="text/javascript" src="Algorithms/Astar.js">         </script>
   <script type="text/javascript" src="Algorithms/dijkstra.js">      </script>
