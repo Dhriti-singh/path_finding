@@ -239,3 +239,14 @@ h1 {
 	margin-top : 10px;
 	font-family: monospace; 
 }
+
+footer{
+	text-align : center;
+	border: 2px black solid;
+    width : 250px;
+    border-radius: 30px;
+    front-family : monospace;
+    margin-left : 500px;
+    background-color : #E18A81;
+    color : white;
+}
