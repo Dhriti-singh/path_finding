@@ -3,7 +3,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Maze</title>
+  <title>Path Finder</title>
 
     <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
     <script src="https://unpkg.com/konva@7.0.2/konva.min.js"></script>
@@ -92,11 +92,17 @@
       <button class="dropdown_button">CREATE BLOCK</button>
       <div class="dropdown_block_content">
         <div id="dropdown_block">
-          <input type="radio"  name="block" value=1 id="wall"  >
+          <input type="radio"  name="block" value=1 id="wall">
           <label for = "wall"  >Wall       </label>
           <br>
-          <input type="radio"  name="block" value=2 id="weight">
-          <label for = "weight">Weight   </label>
+          <input type="radio"  name="block" value=2 id="weight-10">
+          <label for = "weight">Weight-10  </label>
+          <br>
+          <input type="radio"  name="block" value=2 id="weight-20">
+          <label for = "weight">Weight-20  </label>
+          <br>
+          <input type="radio"  name="block" value=2 id="weight-50">
+          <label for = "weight">Weight-50  </label>
         </div>
       </div>
     </span>

@@ -26,17 +26,28 @@ function singleCellDraw(x,y,color){
 }
 
 function drawArrayYellow(arr){
+   ctx.globalAlpha = 0.5;
    for(let i=0;i<arr.length;i++){
       singleCellDraw(arr[i].i , arr[i].j, "yellow");
    }
-   console.log("yellow");
+   ctx.globalAlpha = 1;
 }
 
 
 function drawArrayBlue(arr){
    ctx.globalAlpha = 0.5;
+   let visit = [[]];
+   for(let i=0;i<rows;i++){
+      visit[i] = [];
+      for(let j=0;j<cols;j++){
+         visit[i][j] = 0;
+      }
+   }
    for(let i=0;i<arr.length;i++){
-      singleCellDraw(arr[i].i,arr[i].j,"blue");
+      if(visit[arr[i].i][arr[i].j]==0){
+         singleCellDraw(arr[i].i,arr[i].j,"blue");
+         visit[arr[i].i][arr[i].j]=1;
+      }
    }
    ctx.globalAlpha = 1;
 }

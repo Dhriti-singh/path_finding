@@ -14,8 +14,14 @@ function drawGoalState(event , canvas){
 			if(board[last_x][last_y]==1){
 				singleCellDraw(last_x , last_y, "grey");
 			}
-			else if(weight[last_x][last_y]){
-				singleCellDraw(last_x , last_y, "pink");
+			else if(weight[last_x][last_y]==10){
+				singleCellDraw(last_x , last_y, '#e6b3cc');
+			}
+			else if(weight[last_x][last_y]==20){
+				singleCellDraw(last_x , last_y, "#c6538a");
+			}
+			else if(weight[last_x][last_y]==50){
+				singleCellDraw(last_x , last_y, "#862d58");
 			}
 			else{
 				singleCellDraw(last_x , last_y, "white");
