@@ -52,7 +52,7 @@ function call_IDAstar(){
 	function IDAstar(){
 		let threshold = heuristic(start,end);
 		while(true){
-			console.log(threshold);
+			//console.log(threshold);
 			for(let i=0 ; i<rows; i++){
 				nodes[i] = [];
 				for(let j=0; j<cols ; j++){
