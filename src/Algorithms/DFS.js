@@ -110,7 +110,7 @@ function call_DFS(){
 	else{
 		let currX = goalState.i;
 		let currY = goalState.j;
-		console.log(currX ,currY);
+		//console.log(currX ,currY);
 		while(1){
 			if(currX==initialState.i && currY==initialState.j){
 				break;
@@ -118,7 +118,7 @@ function call_DFS(){
 			else{
 				let parent_x = nodes[currX][currY].parentX;
 				let parent_y = nodes[currX][currY].parentY;
-				console.log(nodes[currX][currY], parent_x, parent_y);
+				///console.log(nodes[currX][currY], parent_x, parent_y);
 				currX = parent_x
 				currY = parent_y;
 				let curr = new selectedNode(currX, currY);

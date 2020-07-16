@@ -91,7 +91,7 @@ function call_Astar(){
 		while(frontier.size()>0){
 			//poping the lowest f(x) value node;
 			let currNode = frontier.pop();
-			console.log(currNode);
+			//console.log(currNode);
 			if(check(currNode)){
 				AstarFinish = true;
 				return;
@@ -100,7 +100,7 @@ function call_Astar(){
 			currNode.closed = true;
 			exploredNodes[currNode.i][currNode.j] = 1;
 			let neighbours = Neighbours(currNode, nodes);
-			console.log(neighbours);
+			//console.log(neighbours);
 
 			for(let i=0;i<neighbours.length;i++){
 				let neighbour = neighbours[i];
@@ -137,6 +137,7 @@ function call_Astar(){
 		console.log("no solution is avaiable");
 	}
 	else{
+		console.log("node found");
 		let currX = goalState.i;
 		let currY = goalState.j;
 		while(1){

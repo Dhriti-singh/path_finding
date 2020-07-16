@@ -71,7 +71,7 @@ function call_BFS(){
 			break;
 		}
 		let front = frontier.shift();
-		console.log(front); 
+		//console.log(front); 
 
 		if(check(front)){
 			bfsFinish = true;
@@ -96,7 +96,7 @@ function call_BFS(){
 			frontier.push(neighbour);
 		}
 	}
-	console.log("out of while");
+	
 
 	if(bfsFinish===false){
 		console.log("no solution");
