@@ -45,7 +45,7 @@ function Neighbours(currNode,nodes){
     if(j>0 && nodes[i][j-1].walk==0){
         temp.push(nodes[i][j-1]);
     }
-    if(document.getElementById("diagonal").checked){
+    if(document.getElementById("dia_check").checked){
         if(i>0 && j>0 && nodes[i-1][j-1].walk == 0){
             temp.push(nodes[i-1][j-1])
         }
