@@ -25,6 +25,10 @@ function onStart(){
 		console.log("IDAstar");
 		call_IDAstar();
 	}
+	if(document.getElementById("bestfs").checked){
+		console.log("best first finder");
+		call_BestFirstSearch();
+	}
 }
 
 
