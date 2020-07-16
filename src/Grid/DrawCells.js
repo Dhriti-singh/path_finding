@@ -1,8 +1,8 @@
 let canvas = document.getElementById('canvas_trigger');
+let ctx = canvas.getContext('2d');
 // x = column number
 // y = row number
 function singleCellDraw(x,y,color){
-   let ctx = canvas.getContext('2d');
    const width = canvas.getBoundingClientRect().width;
    const height = canvas.getBoundingClientRect().height;
    let cellWidth = (width/cols) ;
@@ -34,7 +34,9 @@ function drawArrayYellow(arr){
 
 
 function drawArrayBlue(arr){
+   ctx.globalAlpha = 0.5;
    for(let i=0;i<arr.length;i++){
       singleCellDraw(arr[i].i,arr[i].j,"blue");
    }
+   ctx.globalAlpha = 1;
 }
