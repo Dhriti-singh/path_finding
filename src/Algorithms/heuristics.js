@@ -13,7 +13,7 @@ function heuristic(node1 , node2){
 	//as the heuristic will not be admissible and lead to suboptimal result
 	//changed to euclidean
 	if(document.getElementById("manhattan").checked && document.getElementById("diagonal").checked==false){
-		let d1 = Math.abs(node1.i-node2.j);
+		let d1 = Math.abs(node1.i-node2.i);
 		let d2 = Math.abs(node1.j-node2.j);
 		return d1+d2;
 	}

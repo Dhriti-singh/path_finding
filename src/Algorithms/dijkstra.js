@@ -13,8 +13,7 @@ function call_dijkstra(){
 
 	let start = new Node(initialState.i , initialState.j);
 	let end = new Node(goalState.i , initialState.j );
-	
-	console.log("here");
+
 	function heap() {
         return new BinaryHeap(function(node) {
             return node.distance;
@@ -93,7 +92,6 @@ function call_dijkstra(){
     	}
     }
     dijkstra();
-    console.log("out of while");
 
 	if(dijkstraFinished===false){
 		console.log("no solution");
