@@ -71,7 +71,6 @@ updateCanvas();
 
 //to draw the cell
 function drawCells(rows,cols,board,canvas){
-   let ctx = canvas.getContext('2d');
    const width = canvas.getBoundingClientRect().width;
    const height = canvas.getBoundingClientRect().height;
    //ctx.clearRect(0,0,width,height)
@@ -106,7 +105,6 @@ function drawGrid(rows,cols,canvas){
 
    let cellWidth = width/cols ;
    let cellHeight = height/rows;
-   let ctx = canvas.getContext('2d');
 
    //1. Set the line style options
    ctx.strokeStyle = "black";
@@ -162,14 +160,15 @@ function setWeight(canvas, event, cellRow, cellCol, board) {
    if(weight[cellRow][cellCol] == 0){
       weight[cellRow][cellCol] = 10;
       console.log("board weight set " + weight[cellRow][cellCol]);
+      singleCellDraw(cellRow,cellCol,"pink");
    }
 
    else if(weight[cellRow][cellCol] == 10){
       weight[cellRow][cellCol] = 0 ;
       console.log("board weight removed " + weight[cellRow][cellCol]);
+      singleCellDraw(cellRow,cellCol,"white");
    }
    board[cellRow][cellCol] = 0;
-   updateCanvas();
 }
 
 //function to add walls in the board
@@ -189,7 +188,6 @@ function setWall(canvas, event, cellRow, cellCol) {
       singleCellDraw(cellRow, cellCol, "white");
    }
    weight[cellRow][cellCol] = 0;
-   updateCanvas();
 
    // let ctx = canvas.getContext('2d');
    // canvas.addEventListener("mousemove", mouseMove, false);
