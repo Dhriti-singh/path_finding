@@ -1,22 +1,48 @@
 body{
 	margin : 0px;
-	padding : 5px;
+	padding : 0px;
 }
 canvas{
 	border : 2px solid black;
 }
+h1 {
+    display: block;
+    font-family : georgia;
+    font-weight: bold;
+    background-color : #E18A81;
+    padding : 0px;
+    padding-top: 10;
+    margin: 0px;
+    width : 100%;
+    text-align: center;
+    color: #523838;
+    top : 0px;
+    left : 0px;
+    height: 50px;
+}
+#nav-bar{
+	background-color: #E18A81;
+	padding-bottom : 11px;
+}
+
 /*styling the drop down button*/
 .dropdown_button{
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
+	background-color: #523838;
+	color: #ffffffff;
+	padding: 10px;
 	font-size: 16px;
-	border: none;
+	border: 2px;
+	min-width: 155px;
 	display: inline;
+	margin-left: 120px;
+	margin-top : 10px;
+	font-family: monospace;
+}
+.dropdown_button:hover{
+	background-color: #e86456;
 }
 
 /*styling the algorithm dropdown */
-
 .dropdown_algorithm{
 	position: relative;
 }
@@ -28,7 +54,7 @@ canvas{
 	min-width: 155px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	z-index: 1;
-	margin: 0px 3px;
+	margin: 0px 120px;
 }
 
 .dropdown_algorithm_content input{
@@ -57,10 +83,6 @@ canvas{
 	background-color: #ddd;
 }
 
-.dropdown_algorithm:hover .dropdown_button2{
-	background-color: #3e8e41;
-}
-
 /*styling the maze and pattern dropdown*/
 .dropdown_maze{
 	position: relative;
@@ -73,7 +95,7 @@ canvas{
 	min-width: 155px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	z-index: 1;
-	margin :0px 267px;
+	margin :0px 678px;
 }
 
 .dropdown_maze_content button{
@@ -91,10 +113,6 @@ canvas{
 	background-color: #ddd;
 }
 
-.dropdown_maze:hover .dropdown_button{
-	background-color: #3e8e41;
-}
-
 /*styling the blocks dropdown*/
 .dropdown_block{
 	position: relative;
@@ -107,7 +125,7 @@ canvas{
 	min-width: 155px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	z-index: 1;
-	margin: 0px 420px;
+	margin: 0px 955px;
 }
 
 .dropdown_block_content input{
@@ -135,10 +153,6 @@ canvas{
 	background-color: #ddd;
 }
 
-.dropdown_block:hover .dropdown_button3{
-	background-color: #3e8e41;
-}
-
 /*styling the heuristic block*/
 .dropdown_heuristic{
 	position: relative;
@@ -151,7 +165,7 @@ canvas{
 	min-width: 155px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	z-index: 1;
-	margin: 0px 142px;
+	margin: 0px 400px;
 }
 
 .dropdown_heuristic_content input{
@@ -179,6 +193,49 @@ canvas{
 	background-color: #ddd;
 }
 
-.dropdown_heuristic:hover .dropdown_button4{
-	background-color: #3e8e41;
+#nav-bar2{
+	background-color: #E18A81;
+	padding-bottom : 11px;
+    border-top : 2px solid white;
+    display : block;
+    text-align : top;
+}
+
+#startButton{
+	background-color: #399839;
+	color: #ffffffff;
+	padding: 10px;
+	font-size: 16px;
+	border: 2px;
+	min-width: 70px;
+	border : 2px white solid;
+	border-radius: 	20px;
+	margin-left: 10px;
+	font-family: monospace;
+}
+
+#block{
+	margin-left : 50px;
+	background-color : #523838;
+}
+#diagonal > label{
+	background-color : #523838;
+	color : white;
+	font-family : monospace;
+}
+
+#diagonal > input[type=checkbox]{
+	margin-left : 30px;
+}
+
+#clean{
+	background-color: #52383869;
+	color: #ffffffff;
+	padding: 10px;
+	border: 2px;
+	min-width: 120px;
+	display: inline;
+	margin-left: 120px;
+	margin-top : 10px;
+	font-family: monospace; 
 }
