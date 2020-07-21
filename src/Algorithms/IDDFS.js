@@ -40,12 +40,16 @@ function call_IDDFS(){
 		this.parentY = j;
 		this.walk = board[i][j];
 		this.visted = 0;
-		this.closed = 0;
+        this.closed = 0;
+        this.depth = 0;
+		
 	}
 	
 	let shortestPath = [];
+	let visitedNodes = [];
 	let start = new Node(initialState.i , initialState.j);
 	let end = new Node(goalState.i , goalState.j);
+	console.log('initial and goal states',start,end)
 
 	function check(currNode){
 		if(currNode.i == goalState.i && currNode.j== goalState.j){
@@ -68,14 +72,17 @@ function call_IDDFS(){
 				}
 			}
 			DLSfinished = false;
-			//visitedNodes = [];
+			nodes[start.i][start.j].visited = 1; 
+			// so that start node is not considered as child of its childs.
+
 
 			let result = depthLimitedSearch(nodes[start.i][start.j],0, depth);
+
 			if(result==true){
-				console.log("node found");
+				console.log("node found at depth",depth);
 				let currX = goalState.i;
 				let currY = goalState.j;
-				console.log(currX ,currY);
+				//console.log(currX ,currY);
 				while(1){
 					if(currX==initialState.i && currY==initialState.j){
 						break;
@@ -98,12 +105,13 @@ function call_IDDFS(){
 			}
 			else{
 				depth += 1;
-				console.log("increasing depth to",depth);
+				//console.log("increasing depth to",depth);
+				//drawArrayBlue(visitedNodes); // for debug purpose
 			}
 			if(DLSfinished){
 				return;
 			}
-		}
+		} 
 		console.log("node is unreachable");
 		return;
 	}
@@ -112,29 +120,71 @@ function call_IDDFS(){
 			return true;
 
 		//console.log(currDepth, maxDepth, node);
-		//node.closed = 1;
+		 //node.closed = 1;
 		//visitedNodes.push(node);
 
 		if(check(node)){
 			DLSfinished = true;
 			return true;
 		}
+
 		let neighbours = Neighbours(node , nodes);
 		//console.log(neighbours);
 
 		if(currDepth == maxDepth){
 			return false;
 		}
-		
+
+		let neighbours2= [];
 		for(let i=0;i<neighbours.length;i++){
 			let neighbour = neighbours[i];
-			if(neighbour.closed==1)
-			 	continue;
-			neighbour.closed = 1;
+			//if(neighbour.closed==1 || neighbour.visted ==1)
+				//	console.log("closed",neighbour)
+         		//	continue;	
+         
+          if(neighbour.closed==1 || neighbour.visted ==1){
+              if(neighbour.depth > currDepth + 1){
+				neighbour.depth = currDepth + 1;
+				neighbours2.push(neighbour); 
+              }
+              else{
+                  continue;
+              }
+			//else if(neighbour.visted ==1){
+          	//   continue;     
+          }
+          else{
+			neighbour.depth = currDepth + 1;
+            neighbours2.push(neighbour);
+            neighbour.visted = 1;
+          }
+		 //  console.log("pushed",neighbour)
+		}
+		//	for(let i=0;i<neighbours.length;i++){
+		//		neighbours[i].visted = 1;
+		//	}
+
+			
+		
+		// for(let i=0;i<neighbours.length;i++){
+		// 	let neighbour = neighbours[i];
+		// 	if(neighbour.closed==1 )
+		// 		 continue;
+
+
+		for(let i=0;i<neighbours2.length;i++){
+			let neighbour = neighbours2[i];
+
+			//	if(neighbour.closed==1 || neighbour.visted ==1)	
+			//				 continue;
+
+			//neighbour.closed = 1;
 			neighbour.parentX = node.i;
 			neighbour.parentY = node.j;
-			neighbour.closed = 1;
-			let result = depthLimitedSearch(neighbour , node, currDepth+1, maxDepth);
+            neighbour.closed = 1;
+            //  neighbour.depth = currDepth + 1;
+			visitedNodes.push(new selectedNode(neighbour.i ,neighbour.j));
+			let result = depthLimitedSearch(neighbour , currDepth+1, maxDepth);
 			if(result==true){
 				return true;
 			}
