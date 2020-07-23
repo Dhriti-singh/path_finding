@@ -225,7 +225,7 @@ function recursiveWall(){
 					else if(i == randomPassage){
 						continue;
 					}
-					console.log(bisection);
+					
 					board[i][bisection] = 1;
 				}
 				RecWall([x1,y1], [x2, bisection]);
