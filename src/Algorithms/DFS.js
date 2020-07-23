@@ -1,35 +1,10 @@
-// //each probelm needs to have
-// - initial state
-// -actions
-// -transition state
-// -goal state
-// -path cost function
-
-// node
-// -a state
-// -a parent
-// -an actions
-// -path cost
-
-// -frontier
-
-// -expanded nodes
-
-// -Start with the frontier, which only contains the initial node 
-// -Start with an empty explored set
-// -Repeat 
-// --If the frontier is empty then there is no solution 
-// --Remove a node from the frontier 
-// --If node contains the goal state then return the solution 
-// --Add the node to the explored set
-// --Expand the node, add the resulting node to the frontier 
-//  - --if they aren't already in the frontier or in the explored state
-
-//the frontier stores the nodes to be expanded;
 function call_DFS(){
 	console.log("THE ALGORITHM IS UNWEIGHTED, WEIGHTS ARE TREATED AS WALKABLE BLLOCKS");
+
+	//to  store informaion about all the nodes
 	let nodes = [[]];
 	updateCanvas();
+
 	for(let i=0;i<rows;i++){
 		nodes[i] =[];
 		for(let j=0;j<cols;j++){
@@ -37,64 +12,59 @@ function call_DFS(){
 			nodes[i][j].walk = board[i][j];
 		}
 	}
+	//inital and goal state
+	let start = new Node(initialState.i, initialState.j);
+	let end   = new Node(goalState.i , goalState.j);
 
+
+	//implementing the frontier using a stack
 	let frontier = [];
-	frontier.push(initialState);
-	initialState.parentX = initialState.i;
-	initialState.parentY = initialState.j;
-
-	//implementing it using a stack
+	frontier.push(start);
 
 	//to store the shortest path
 	let shortestPath = [];
-	//to keep a check if its visited ot not
+
+	//to keep a track of all the visited nodes
 	let visitedNodes = [];
 
-	//all the visited nodes
-	let exploredNodes = [];
-
+	//a variable to check if the algorithm is  completed
 	let dfsFinish = false;
 
+	//if current node is the goal node
 	function check( currentNode ){
-		//console.log("check run")
 	 	if(currentNode.i == goalState.i && currentNode.j == goalState.j)
 	 		return true;
 	 	else
 	 		return false;
 	}
 
-	//need to reset everything after running one algorihtm,
-	//the explored nodes sepecially
-
-	for(let i=0;i<rows;i++){
-		exploredNodes[i]=[];
-		for(let j=0;j<cols;j++){
-			exploredNodes[i][j] = 0;
-		}
-	}
-
-	dfsFinish = false;
-
 	while(frontier.length){
+		//if the goal node is already found
 		if(dfsFinish){
 			break;
 		}
-		let front = frontier.pop();
-		exploredNodes[front.i][front.j] = 1;
 
+		let front = frontier.pop();
+
+		//if current node is the goal node
 		if(check(front)){
 			console.log("dfs dfsFinish");
 			dfsFinish = 1;
 			break;
 		}
+
+		//closing the current node
 		front.closed = 1;
 		visitedNodes.push(new selectedNode(front.i ,front.j));
+
+		//expanging the current node
 		let neighbours = Neighbours(front , nodes);
 
 		for(let i =0;i<neighbours.length;i++){
 			let neighbour = neighbours[i];
 
-			if(neighbours.closed==1 || exploredNodes[neighbour.i][neighbour.j]==1 ){
+			//if the node is already explored
+			if(neighbour.closed == 1){
 				continue;
 			}
 			neighbour.visit = true;
@@ -104,13 +74,14 @@ function call_DFS(){
 		}
 	}
 
+	//node not reachable
 	if(dfsFinish===false){
-		console.log("no solution available");
+		console.log("goal state is unreachable");
 	}
 	else{
 		let currX = goalState.i;
 		let currY = goalState.j;
-		//console.log(currX ,currY);
+		//backtracking the path found by DFS
 		while(1){
 			if(currX==initialState.i && currY==initialState.j){
 				break;
@@ -127,6 +98,7 @@ function call_DFS(){
 		}
 	}
 
+	//visualizing the results
 	drawArrayBlue(visitedNodes);
 	drawArrayYellow(shortestPath);
 	singleCellDraw(initialState.i, initialState.j,"green");
