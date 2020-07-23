@@ -1,37 +1,10 @@
-// each probelm needs to have
-// - initial state
-// -actions
-// -transition state
-// -goal state
-// -path cost function
-
-// node
-// -a state
-// -a paren
-// -an actions
-// -path cost
-
-// -frontier
-
-// -expanded nodes
-
-// -Start with the frontier, which only contains the initial node 
-// -Start with an empty explored set
-// -Repeat 
-// --If the frontier is empty then there is no solution 
-// --Remove a node from the frontier 
-// --If node contains the goal state then return the solution 
-// --Add the node to the explored set
-// --Expand the node, add the resulting node to the frontier 
-//  - --if they aren't already in the frontier or in the explored state
-
-//the frontier stores the nodes to be expanded;
-
-
 function call_BFS(){
 	updateCanvas();
 	console.log("THE ALGORITHM IS UNWEIGHTED, WEIGHTS ARE TREATED AS WALKABLE BLLOCKS");
+
+	//storing information about all the nodes
 	let nodes = [[]];
+
 	//defining the state of every node in BFS
 	for(let i=0;i<rows;i++){
 		nodes[i] =[];
@@ -40,19 +13,24 @@ function call_BFS(){
 			nodes[i][j].walk = board[i][j];
 		}
 	}
+	//inital and goal state
+	let start = new Node(initialState.i, initialState.j);
+	let end   = new Node(goalState.i , goalState.j);
 
-
+	//implementing frontier using a queue
 	let frontier = [];
-	frontier.push(initialState);
-	initialState.parentX = initialState.i;
-	initialState.parentY = initialState.j;
-
+	frontier.push(start);
+	
+	//to store the shortest path
 	let shortestPath = [];
-	let visitedNodes = [];
-	let exploredNodes = [];
 
+	//to keep a track of all the visited nodes
+	let visitedNodes = [];
+
+	//a variable to check if the algorithm is  completed
 	let bfsFinish = false;
 
+	//to check if the current node is the goal state
 	function check( currentNode ){
 	 	if(currentNode.i == goalState.i && currentNode.j == goalState.j)
 	 		return true;
@@ -60,34 +38,33 @@ function call_BFS(){
 	 		return false;
 	}
 
-	for(let i=0;i<rows;i++){
-		exploredNodes[i]=[];
-		for(let j=0;j<cols;j++){
-			exploredNodes[i][j] = 0;
-		}
-	}
 	while(frontier.length){
+		//if the goal node is already found
 		if(bfsFinish){
 			break;
 		}
-		let front = frontier.shift();
-		//console.log(front); 
 
+		let front = frontier.shift();
+		
+		//if the current node is the gosl state
 		if(check(front)){
 			bfsFinish = true;
 			console.log("BFS finsished");
 			break;
 		}
+
+		//closing the current state
 		front.closed = 1;
-		exploredNodes[front.i][front.j] = 1;
 		visitedNodes.push(new selectedNode(front.i , front.j));
 
+		//expanding the current node
 		let neighbours = Neighbours(front , nodes);
 
-		for(let i =0;i<neighbours.length;i++){
+		for(let i=0;i<neighbours.length;i++){
 			let neighbour = neighbours[i];
 
-			if(neighbours.closed==1 || exploredNodes[neighbour.i][neighbour.j]==1 || neighbour.visit){
+			//if the goal node is alreasy explored
+			if(neighbours.closed==1 || neighbour.visit){
 				continue;
 			}
 			neighbour.visit = true;
@@ -97,22 +74,22 @@ function call_BFS(){
 		}
 	}
 	
-
+	//if the node is unreachable
 	if(bfsFinish===false){
 		console.log("no solution");
 	}
 	else{
 		let currX = goalState.i;
 		let currY = goalState.j;
+		//backtracking the path found by BFS
 		while(1){
 			if(currX==initialState.i && currY==initialState.j){
 				break;
 			}
 			else{
-				//console.log( "in time" , currX, currY);
 				let parent_x = nodes[currX][currY].parentX;
 				let parent_y = nodes[currX][currY].parentY;
-				console.log(nodes[currX][currY], parent_x, parent_y);
+				//console.log(nodes[currX][currY], parent_x, parent_y);
 				currX = parent_x
 				currY = parent_y;
 				let curr = new selectedNode(currX, currY);
@@ -120,6 +97,8 @@ function call_BFS(){
 			}
 		}
 	}
+
+	//visualizing the results
 	drawArrayBlue(visitedNodes);
 	drawArrayYellow(shortestPath);
 	singleCellDraw(initialState.i,initialState.j,"green");
