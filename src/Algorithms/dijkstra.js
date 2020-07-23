@@ -118,7 +118,7 @@ function call_dijkstra(){
 
     //if the node is unreachable
 	if(dijkstraFinished===false){
-		console.log("no solution");
+		console.log("node unreachable");
 	}
     //if the node is found
 	else{
@@ -135,7 +135,7 @@ function call_dijkstra(){
 				//console.log( "in time" , currX, currY);
 				let parent_x = nodes[currX][currY].parentX;
 				let parent_y = nodes[currX][currY].parentY;
-				console.log(nodes[currX][currY], parent_x, parent_y);
+				//console.log(nodes[currX][currY], parent_x, parent_y);
 				currX = parent_x
 				currY = parent_y;
 				let curr = new selectedNode(currX, currY);
