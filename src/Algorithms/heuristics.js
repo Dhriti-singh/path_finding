@@ -17,22 +17,6 @@ function heuristic(node1 , node2){
 		let d2 = Math.abs(node1.j-node2.j);
 		return d1+d2;
 	}
-
-	if(document.getElementById("chebyshev").checked){
-		let d1 = (node1.i-node2.i)*(node1.i-node2.i);
-		let d2 = (node1.j-node2.j)*(node1.j-node2.j);
-		return Math.max(d1,d1);
-	}
-
-	if(document.getElementById("octile").checked){
-		let d1 = (node1.i-node2.i)*(node1.i-node2.i);
-		let d2 = (node1.j-node2.j)*(node1.j-node2.j);
-		let x = Math.sqrt(2)-1;
-		if(d2>d1)
-			return x*d1 + d2;
-		else
-			return x*d2 + d1;
-	}
 	else{
 		let d1 = (node1.i-node2.i)*(node1.i-node2.i);
 		let d2 = (node1.j-node2.j)*(node1.j-node2.j);
