@@ -1,13 +1,13 @@
-// //storing basic infromation about each node
+// storing basic infromation about each node
 
-// // x - column of the node
-// // y - row of the node
-// // walk 
-// // 	if walk == 0
-// // 		means that the node is walkable
-// // 	else
-// // 		means that the node is not walkable
-// // 		and hence a wall.
+// x - column of the node
+// y - row of the node
+// walk 
+// 	if walk == 0
+// 		means that the node is walkable
+// 	else
+// 		means that the node is not walkable
+// 		and hence a wall.
 
 
 //general 
@@ -21,11 +21,13 @@ function Node(i,j){
     this.closed = 0;
 }
 
+//a node to store just coordinates
 function selectedNode(i,j){
 	this.i = i;
 	this.j = j;
 }
 
+//a function to expand the input node
 function Neighbours(currNode,nodes){
     let i = currNode.i;
     let j = currNode.j;
@@ -61,4 +63,4 @@ function Neighbours(currNode,nodes){
     }
 
     return temp;
-  }
+}
