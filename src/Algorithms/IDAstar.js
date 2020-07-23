@@ -56,6 +56,8 @@ function call_IDAstar(){
 				break;
 			}
 			explored = 0;
+			nodes[start.i][start.j].closed = 1;
+			start.closed = 1;
 			let t = Astar(nodes[start.i][start.j], 0, threshold);
 
 			if(t < 0 ){
