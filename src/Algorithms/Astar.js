@@ -23,6 +23,8 @@ function call_Astar(){
 	let start = new Node(initialState.i, initialState.j);
 	let end = new Node(goalState.i , goalState.j);
 
+	//to keep track of all the visited nodes
+	let visitedNodes = [];
 
 	for(let i=0 ; i<rows; i++){
 		nodes[i] = [];
@@ -124,7 +126,7 @@ function call_Astar(){
 				let parent_y = nodes[currX][currY].parentY;
 				//console.log(parent_x, parent_y);
 				currX = parent_x
-				cusrrY = parent_y;
+				currY = parent_y;
 				let curr = new selectedNode(currX, currY);
 				shortestPath.push(curr);
 			}
