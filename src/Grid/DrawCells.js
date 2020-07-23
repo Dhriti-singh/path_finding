@@ -26,11 +26,9 @@ function singleCellDraw(x,y,color){
 }
 
 function drawArrayYellow(arr){
-   ctx.globalAlpha = 0.5;
    for(let i=0;i<arr.length;i++){
       singleCellDraw(arr[i].i , arr[i].j, "yellow");
    }
-   ctx.globalAlpha = 1;
 }
 
 
