@@ -3,7 +3,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Path Finder</title>
+  <title>PATH FINDING VISUALIZER</title>
 
     <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
     <script src="https://unpkg.com/konva@7.0.2/konva.min.js"></script>
@@ -54,11 +54,6 @@
           <input type="radio" name="heuristic"  id="euclidean">
           <label for="euclidean">Euclidean</label>
           <br>
-          <input type="radio" name="heuristic"  id="chebyshev">
-          <label for="chebyshev">Chebyshev</label>
-          <br>
-          <input type="radio" name="heuristic" id="octile">
-          <label for="octile">Octile</label>
         </div>
       </div>
     </span>
@@ -134,12 +129,11 @@
     
 
   <br><br>
-  <!-- adding the start box, and making it dragable -->
+
   <div id="container"></div>
   <canvas id="canvas_trigger" width="1250px" height="500px"></canvas>
 
-   <!-- //needed to add the javascript file after adding the canvas -->
-
+  <script type="text/javascript" src="heapFunction.js">               </script>
   <script type="text/javascript" src="Grid/DrawCells.js">             </script>
   <script type="text/javascript" src="Node.js">                       </script>
   <script type="text/javascript" src="Grid/board.js">                 </script>
@@ -150,16 +144,17 @@
   <script type="text/javascript" src="Algorithms/BFS.js">             </script>
   <script type="text/javascript" src="Algorithms/Astar.js">           </script>
   <script type="text/javascript" src="Algorithms/dijkstra.js">        </script>
-  <script type="text/javascript" src="heapFunction.js">               </script>
   <script type="text/javascript" src="Algorithms/IDDFS.js">           </script>
   <script type="text/javascript" src="Algorithms/IDAstar.js">         </script>
   <script type="text/javascript" src="Algorithms/heuristics.js">      </script>
   <br>
   <br>
+
   <footer>
     <span>PROJECT HOSTED ON</span>
     <a href="https://github.com/Dhriti-singh/path_finding">GitHub</a>
   </footer>
+
 <br>
 </body>
 </html>
