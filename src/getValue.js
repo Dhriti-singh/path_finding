@@ -1,31 +1,39 @@
 function onStart(){
 	//radio button reading
+	document.getElementById("status_select").innerHTML = "running";
 	if(document.getElementById("dfs").checked){
+		document.getElementById("algorithm_select").innerHTML = "DFS";
 		console.log(" starting DFS ");
 		call_DFS();
 	}
 	if(document.getElementById("bfs").checked){
 		console.log("starting BFS ");
+		document.getElementById("algorithm_select").innerHTML = "BFS";
 		call_BFS();
 	}
 	if(document.getElementById("Astar").checked){
 		console.log("starting a star");
+		document.getElementById("algorithm_select").innerHTML = "A Star";
 		call_Astar();
 	}
 	if(document.getElementById("dijkstra").checked){
 		console.log("starting dijkstra");
+		document.getElementById("algorithm_select").innerHTML = "dijkstra";
 		call_dijkstra();
 	}
 	if(document.getElementById("IDDFS").checked){
+		document.getElementById("algorithm_select").innerHTML = "IDDFS";
 		console.log("starting IDDFS");
 		call_IDDFS();
 	}
 	if(document.getElementById("IDAstar").checked){
+		document.getElementById("algorithm_select").innerHTML = "IDAstar";
 		console.log("starting IDAstar");
 		call_IDAstar();
 	}
 	if(document.getElementById("bestfs").checked){
 		console.log("starting best first finder");
+		document.getElementById("algorithm_select").innerHTML = "Best FS";
 		call_BestFirstSearch();
 	}
 	console.log("finished");

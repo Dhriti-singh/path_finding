@@ -20,11 +20,11 @@
       <button class="dropdown_button">ALGORITHMS</button>
       <div class="dropdown_algorithm_content">
         <div id="dropdown_algorithms">
+          <input type="radio" name="algo" value="bfs"  id="bfs" checked>
+          <label for="bfs">BFS</label>
+          <br>
           <input type="radio" name="algo" value="dfs" id="dfs" >
           <label for="dfs">DFS</label>
-          <br>
-          <input type="radio" name="algo" value="bfs"  id="bfs">
-          <label for="bfs">BFS</label>
           <br>
           <input type="radio" name="algo" value="bestfs"  id="bestfs">
           <label for="bestfs">Best First Finder</label>
@@ -48,7 +48,7 @@
       <button class="dropdown_button">HEURISTIC</button>
       <div class="dropdown_heuristic_content">
         <div id="dropdown_heuristic">
-          <input type="radio" name="heuristic" id="manhattan" >
+          <input type="radio" name="heuristic" id="manhattan" checked>
           <label for="manhattan">Manhattan</label>
           <br>
           <input type="radio" name="heuristic"  id="euclidean">
@@ -87,7 +87,7 @@
       <button class="dropdown_button">CREATE BLOCK</button>
       <div class="dropdown_block_content">
         <div id="dropdown_block">
-          <input type="radio"  name="block" value=1 id="wall">
+          <input type="radio"  name="block" value=1 id="wall" checked>
           <label for = "wall"  >Wall       </label>
           <br>
           <input type="radio"  name="block" value=2 id="weight-10">
@@ -121,6 +121,21 @@
     <button type = "button" onclick = "cleanResult()" id = "clean">
           CLEAN PATH
     </button>
+
+    <table id="table">
+      <tr>
+        <th>Algrotihm</th>
+        <th>Status</th>
+        <th>Visited nodes</th>
+        <th>Path length</th>
+      </tr>
+      <tr>
+        <td id= "algorithm_select">BFS      </td>
+        <td id= "status_select">            </td>
+        <td id= "visit_select">             </td>
+        <td id= "path_select">              </td>
+      </tr>
+    </table>
 
     
   </div>
