@@ -36,11 +36,6 @@ function call_IDAstar(){
 	//a variable to check if the algorithm is  completed
 	let IDAstarFinish = false;
 
-	//keeps a count of the nodes explored in previous iteration
-	let exploredPrev = -1;
-	//keeps a count of the nodes explored in current iteration
-	let explored = 0;
-
 	//iterating through different threshold
 	function IDAstar(){
 		let threshold = heuristic(start,end);
@@ -55,13 +50,14 @@ function call_IDAstar(){
 			if(IDAstarFinish){
 				break;
 			}
-			explored = 0;
+	
 			nodes[start.i][start.j].closed = 1;
 			start.closed = 1;
 			let t = Astar(nodes[start.i][start.j], 0, threshold);
 
 			if(t < 0 ){
 				console.log("node found");
+				document.getElementById("status_select").innerHTML = "Found";
 				let shortestPath = [];
 				let currX = goalState.i;
 				let currY = goalState.j;
@@ -80,6 +76,8 @@ function call_IDAstar(){
 						shortestPath.push(curr);
 					}
 				}
+				document.getElementById("visit_select").innerHTML = "-";
+				document.getElementById("path_select").innerHTML = shortestPath.length;
 				drawArrayYellow(shortestPath);
 				singleCellDraw(initialState.i, initialState.j,"green");
 				singleCellDraw(goalState.i,goalState.j,"red");
@@ -87,21 +85,18 @@ function call_IDAstar(){
 			}
 			else if(t === Infinity){
 				console.log("node not found");
+				document.getElementById("status_select").innerHTML = "unreachable";
+				document.getElementById("visit_select").innerHTML = "-";
+				document.getElementById("path_select").innerHTML = "-";
 				return;
 			}
 			else{
-				//increasing the thresholf for next iteration
-				threshold++;
-			}
-			///if the umber of nodes explored in current iteration is same as the previous iteration
-			//then the node is unreachable
-			if(exploredPrev == explored){
-				console.log("node is unreachable");
-				break;
-			}
-			//update previous explored nodes value
-			else{
-				exploredPrev = explored ;
+				//increasing the threshold for next iteration
+				if(t - threshold > 1)
+					threshold = t;
+				else
+					threshold += 1;
+				//console.log(threshold);
 			}
 		}
 		return;
@@ -151,9 +146,6 @@ function call_IDAstar(){
 			}
 		}
 		for(let i=0; i<neighbours2.length;i++){
-
-			//increasing the number of explored nods
-			explored += 1;
 
 			let neighbour = neighbours2[i];	
 			neighbour.parentX = node.i;
