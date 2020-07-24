@@ -11,7 +11,7 @@ function call_dijkstra(){
 		this.parentX = i;
 		this.parentY = j;
 		this. walk = board[i][j];
-		this.distance = 10000000000000;
+		this.distance = Infinity;
 	}
 
     //inital and goal state
@@ -60,6 +60,7 @@ function call_dijkstra(){
         //setting the distance of start as 0
     	nodes[start.i][start.j].distance = 0;
     	frontier.push(start);
+        start.distance = 0;
 
     	while(frontier.size()>0){
 
