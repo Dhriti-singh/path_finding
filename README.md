@@ -1,5 +1,9 @@
 # Path Finding Visulizer
 A basic web application for finding the path(2D) from the start node to the end node. *Optimization* of the path will entirely depend on the algorithm and heuristic chosen. 
+
+##DEMO
+The working of the web application can be found at https://dhriti-singh.github.io/.
+
 ## ALGORITHMS
 Thr following are the algorithms supported by the program.
  1. Depth First Search 
