@@ -60,6 +60,7 @@ function call_IDDFS(){
 				let shortestPath = [];
 
 				console.log("node found at depth",depth);
+				document.getElementById("status_select").innerHTML = "Found";
 				let currX = goalState.i;
 				let currY = goalState.j;
 				//backtracking to find the optimal path
@@ -77,6 +78,8 @@ function call_IDDFS(){
 						shortestPath.push(curr);
 					}
 				}
+				document.getElementById("visit_select").innerHTML = "-";
+				document.getElementById("path_select").innerHTML = shortestPath.length;
 				drawArrayYellow(shortestPath);
 				singleCellDraw(initialState.i, initialState.j,"green");
 				singleCellDraw(goalState.i,goalState.j,"red");
@@ -93,6 +96,9 @@ function call_IDDFS(){
 			//then the node is unreachable
 			if(exploredPrev == explored){
 				console.log("node is unreachable");
+				document.getElementById("status_select").innerHTML = "unreachable";
+				document.getElementById("visit_select").innerHTML = "-";
+				document.getElementById("path_select").innerHTML = "-";
 				break;
 			}
 			//update previous explored nodes value
