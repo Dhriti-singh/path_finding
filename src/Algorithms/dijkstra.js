@@ -71,7 +71,6 @@ function call_dijkstra(){
 
             //the node with shortest distance
     		let front = frontier.pop();
-       		visitedNodes.push(front);
     		front.closed = 1;
 
             //if current node is goal node
@@ -87,11 +86,11 @@ function call_dijkstra(){
 
     		for(let i=0; i<neighbours.length ; i++){
     			let neighbour = neighbours[i];
+                visitedNodes.push(neighbour);
 
                 //if the node is already expanded
     			if(neighbour.closed==1 || neighbour.walk==1)
     				continue;
-
 
     			let currDistance = front.distance + neighbour.cost;
     			let beenVisited = neighbour.visited;
