@@ -119,9 +119,13 @@ function call_dijkstra(){
     //if the node is unreachable
 	if(dijkstraFinished===false){
 		console.log("node unreachable");
+        document.getElementById("status_select").innerHTML = "unreachable";
+        document.getElementById("visit_select").innerHTML = "-";
+        document.getElementById("path_select").innerHTML = "-";
 	}
     //if the node is found
 	else{
+        document.getElementById("status_select").innerHTML = "Found";
 		let currX = goalState.i;
 		let currY = goalState.j;
 
@@ -142,6 +146,8 @@ function call_dijkstra(){
 				shortestPath.push(curr);
 			}
 		}
+        document.getElementById("visit_select").innerHTML = visitedNodes.length;
+        document.getElementById("path_select").innerHTML = shortestPath.length;
 	}
 
     //visualizing the optimal path
