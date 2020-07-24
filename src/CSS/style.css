@@ -254,9 +254,14 @@ footer{
 }
 #table{
 	display: inline;
-	margin-left: 110px;
+	margin-left: 70px;
 }
 th, td{
 	border : 2px white solid;
 	text-align : center;
+	width : 100px;
+}
+
+th{
+	color: #523838;
 }
