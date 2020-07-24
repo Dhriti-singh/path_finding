@@ -12,14 +12,15 @@ function heuristic(node1 , node2){
 	//while we select diagonal,we can ont use the manhattan diatance
 	//as the heuristic will not be admissible and lead to suboptimal result
 	//changed to euclidean
-	if(document.getElementById("manhattan").checked && document.getElementById("diagonal").checked==false){
+	if(document.getElementById("manhattan").checked && document.getElementById("dia_check").checked==false){
 		let d1 = Math.abs(node1.i-node2.i);
 		let d2 = Math.abs(node1.j-node2.j);
 		return d1+d2;
 	}
 	else{
-		let d1 = (node1.i-node2.i)*(node1.i-node2.i);
-		let d2 = (node1.j-node2.j)*(node1.j-node2.j);
-		return Math.sqrt(d1+d2);
+		let d1 = (node1.i-node2.i);
+		let d2 = (node1.j-node2.j);
+		return Math.sqrt(d1*d1 + d2*d2 );
 	}
 }
+ 
