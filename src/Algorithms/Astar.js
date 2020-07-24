@@ -110,10 +110,14 @@ function call_Astar(){
 	Astar();
 	let shortestPath = [];
 	if(AstarFinish==false){
+		document.getElementById("status_select").innerHTML = "Unreachable";
+		document.getElementById("visit_select").innerHTML = "-";
+		document.getElementById("path_select").innerHTML = "-";
 		console.log("no solution is avaiable");
 	}
 	else{
 		console.log("node found");
+		document.getElementById("status_select").innerHTML = "Found";
 		let currX = goalState.i;
 		let currY = goalState.j;
 		//backtracking the path to find the optimla path
@@ -131,6 +135,8 @@ function call_Astar(){
 				shortestPath.push(curr);
 			}
 		}
+		document.getElementById("visit_select").innerHTML = visitedNodes.length;
+		document.getElementById("path_select").innerHTML = shortestPath.length;
 	}
 	
 	drawArrayBlue(visitedNodes);
