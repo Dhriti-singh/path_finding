@@ -252,3 +252,11 @@ footer{
     color : black;
     font-size: 15px;
 }
+#table{
+	display: inline;
+	margin-left: 110px;
+}
+th, td{
+	border : 2px white solid;
+	text-align : center;
+}
