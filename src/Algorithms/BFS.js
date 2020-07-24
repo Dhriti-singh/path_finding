@@ -76,9 +76,13 @@ function call_BFS(){
 	
 	//if the node is unreachable
 	if(bfsFinish===false){
+		document.getElementById("status_select").innerHTML = "unreachable";
+		document.getElementById("visit_select").innerHTML = "-";
+		document.getElementById("path_select").innerHTML = "-";
 		console.log("no solution");
 	}
 	else{
+		document.getElementById("status_select").innerHTML = "Found";
 		let currX = goalState.i;
 		let currY = goalState.j;
 		//backtracking the path found by BFS
@@ -96,11 +100,12 @@ function call_BFS(){
 				shortestPath.push(curr);
 			}
 		}
+		document.getElementById("visit_select").innerHTML = visitedNodes.length;
+		document.getElementById("path_select").innerHTML = shortestPath.length;
+		//visualizing the results
+		drawArrayBlue(visitedNodes);
+		drawArrayYellow(shortestPath);
+		singleCellDraw(initialState.i,initialState.j,"green");
+		singleCellDraw(goalState.i,goalState.j,"red")
 	}
-
-	//visualizing the results
-	drawArrayBlue(visitedNodes);
-	drawArrayYellow(shortestPath);
-	singleCellDraw(initialState.i,initialState.j,"green");
-	singleCellDraw(goalState.i,goalState.j,"red");
 }
