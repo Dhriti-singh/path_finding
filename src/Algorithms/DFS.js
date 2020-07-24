@@ -77,8 +77,12 @@ function call_DFS(){
 	//node not reachable
 	if(dfsFinish===false){
 		console.log("goal state is unreachable");
+		document.getElementById("status_select").innerHTML = "unreachable";
+		document.getElementById("visit_select").innerHTML = "-";
+		document.getElementById("path_select").innerHTML = "-";
 	}
 	else{
+		document.getElementById("status_select").innerHTML = "Found";
 		let currX = goalState.i;
 		let currY = goalState.j;
 		//backtracking the path found by DFS
@@ -96,6 +100,8 @@ function call_DFS(){
 				shortestPath.push(curr);
 			}
 		}
+		document.getElementById("visit_select").innerHTML = visitedNodes.length;
+		document.getElementById("path_select").innerHTML = shortestPath.length;
 	}
 
 	//visualizing the results
