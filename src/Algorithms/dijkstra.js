@@ -153,6 +153,7 @@ function call_dijkstra(){
     //visualizing the optimal path
 	drawArrayBlue(visitedNodes);
 	drawArrayYellow(shortestPath);
+    drawPath(shortestPath);
 	singleCellDraw(initialState.i,initialState.j,"green");
 	singleCellDraw(goalState.i,goalState.j,"red");
 

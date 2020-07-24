@@ -27,7 +27,7 @@ function singleCellDraw(x,y,color){
 
 function drawArrayYellow(arr){
    for(let i=0;i<arr.length;i++){
-      singleCellDraw(arr[i].i , arr[i].j, "yellow");
+      singleCellDraw(arr[i].i , arr[i].j, "#f3f377");
    }
 }
 
@@ -43,9 +43,40 @@ function drawArrayBlue(arr){
    }
    for(let i=0;i<arr.length;i++){
       if(visit[arr[i].i][arr[i].j]==0){
-         singleCellDraw(arr[i].i,arr[i].j,"blue");
+         singleCellDraw(arr[i].i,arr[i].j,"#56bdd7");
          visit[arr[i].i][arr[i].j]=1;
       }
    }
    ctx.globalAlpha = 1;
+}
+
+function drawPath(arr){
+   let ctx = canvas.getContext('2d');
+   const width = canvas.getBoundingClientRect().width;
+   const height = canvas.getBoundingClientRect().height;
+   let cellWidth = (width/cols) ;
+   let cellHeight =(height/rows);
+
+   ctx.strokeStyle = "orange";
+   ctx.lineWidth = 7;
+   ctx.lineCap = "round";
+   ctx.lineJoin = "round";
+
+   ctx.beginPath();
+
+   let gx = goalState.j * cellWidth + cellWidth/2;
+   let gy = goalState.i* cellHeight + cellHeight/2;
+
+   let x2 = 0; 
+   let y2 = 0;
+   ctx.moveTo(gx,gy);
+
+   for(let i=0;i<arr.length;i++){
+      
+      x2 =  arr[i].j * cellWidth + cellWidth/2;
+      y2 =  arr[i].i* cellHeight + cellHeight/2;
+      ctx.lineTo(x2, y2);
+    
+   }
+   ctx.stroke();
 }

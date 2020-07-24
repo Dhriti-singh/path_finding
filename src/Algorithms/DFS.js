@@ -107,6 +107,7 @@ function call_DFS(){
 	//visualizing the results
 	drawArrayBlue(visitedNodes);
 	drawArrayYellow(shortestPath);
+	drawPath(shortestPath);
 	singleCellDraw(initialState.i, initialState.j,"green");
 	singleCellDraw(goalState.i,goalState.j,"red");
 

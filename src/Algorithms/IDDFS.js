@@ -81,6 +81,7 @@ function call_IDDFS(){
 				document.getElementById("visit_select").innerHTML = "-";
 				document.getElementById("path_select").innerHTML = shortestPath.length;
 				drawArrayYellow(shortestPath);
+				drawPath(shortestPath);
 				singleCellDraw(initialState.i, initialState.j,"green");
 				singleCellDraw(goalState.i,goalState.j,"red");
 				return;
